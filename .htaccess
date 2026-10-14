@@ -6,9 +6,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
 RewriteEngine On
 # sempre https e sem www
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} ^www\. [NC]
-RewriteRule ^(.*)$ https://cr8conecta.com.br/$1 [R=301,L]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 # página antiga de landing pages agora faz parte de Criação de Sites
 RewriteRule ^landing-pages/?$ /criacao-de-sites/ [R=301,L]
 # esconde arquivos internos do repositório (fonte, instruções, git)
