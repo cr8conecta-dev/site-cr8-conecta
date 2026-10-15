@@ -270,7 +270,7 @@ SOLUTIONS = [
         "index_desc": "CRM com origem do lead, follow-up, rotina dos vendedores e IA, ligado ao Google Ads e ao Meta Ads.",
         "service_type": "Implantação de CRM com WhatsApp, automações e IA",
         "h1": "CRM com WhatsApp e IA para controlar contatos, vendedores e anúncios",
-        "lead": "CRM é o sistema que reúne todos os contatos, o histórico de conversa e a etapa de cada venda em um só lugar. Com o CRM CR8 Conecta, a plataforma própria da agência, você sabe de onde cada contato veio, quem está cuidando dele e o que falta para fechar, e devolve essa informação ao Google Ads e ao Meta Ads para as campanhas ficarem mais inteligentes.",
+        "lead": "CRM é o sistema que reúne contatos, histórico de conversa e etapa de cada venda em um só lugar. No CRM CR8 Conecta, você vê de onde cada contato veio e quem está cuidando dele, e a venda volta para o Google Ads e o Meta Ads.",
         "what_title": "O que é e para quem serve",
         "what": [
             "O CRM serve a duas realidades. Em serviços de ticket alto, a decisão leva dias ou semanas, e quem acompanha o cliente com método tem mais chance de ser escolhido. Em negócios de volume, entram muitos contatos por dia e o desafio é responder rápido, distribuir entre os vendedores e não deixar ninguém sem resposta.",

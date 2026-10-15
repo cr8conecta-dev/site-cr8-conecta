@@ -43,9 +43,14 @@ _fonte/gerar.py        gera tudo: python3 _fonte/gerar.py
 - Não inventar números, depoimentos ou clientes. Só dados com fonte verificável; se não tiver fonte, não usar.
 - Paleta oficial: marinho #0d2743, azul acinzentado #8c9eac, nude #dad5cf, branco #ffffff. Seções alternam escuras e claras.
 - Visual sóbrio: o Carlos não quer cara de site feito por IA. Evitar brilhos, formas flutuando, efeitos de aparecer ao rolar em todo bloco, cartões de vidro com sombra, gradientes decorativos. Preferir fotos reais e listas limpas.
+- Regras de design (espaçamento, tipografia, contraste, botões, metas de altura das páginas, checklist): ver `GUIA-VISUAL.md`. Prints de referência ficam em `referencias/`, que não vai para o GitHub nem para o site.
 - WhatsApp e telefone: (41) 99525-7590 (wa.me/5541995257590). Google Tag Manager: GTM-W52QP5QB.
 
 ## Pendências conhecidas
+
+- Melhoria de UX em andamento (tudo local, NADA publicado): home reordenada, CSS sem brilho/degradê, cores de contraste corrigidas, página do CRM enxuta (conferidas). Páginas de serviço (Perfil no Google, Criação de Sites, Redes Sociais, Tráfego, Automação): ilustrações escondidas no celular e faixa de convite no meio, geradas mas NÃO conferidas no celular, no desktop nem no contraste. Conferir tudo antes de qualquer "pode publicar".
+- Propostas para o CRM ainda sem decisão: compactar listas, tirar a seção "Uma plataforma no lugar de várias ferramentas", links compactos em "Continue explorando".
+- Figma da home (conta da Amanda, ainda sem acesso da CR8): https://www.figma.com/design/5lhZ3wX844SzClvDX9jf0G. O Figma não atualiza o site sozinho.
 
 - Página de política de privacidade (necessária para anúncios e formulário).
 - Blog em `/blog/` (estrutura preparada, ainda sem conteúdo).

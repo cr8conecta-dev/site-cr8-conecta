@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# referencias visuais (prints de outros sites): so no computador, nunca no GitHub nem no site
+referencias/

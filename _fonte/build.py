@@ -406,13 +406,6 @@ def build_home():
             f'<div><p>{esc(p["text"])}</p><div class="links">{links}</div></div></div>'
         )
 
-    sol_groups = ""
-    for key in ["P", "A", "R"]:
-        slugs = [s["slug"] for s in SOLUTIONS if s["pillar"] == key]
-        sol_groups += index_list(c, slugs)
-    # uma lista contínua, na ordem dos pilares
-    sol_list = index_list(c, [s["slug"] for s in SOLUTIONS])
-
     videos = "".join(
         '<button class="video" type="button" data-yt="%s" data-name="%s" aria-label="Assistir ao depoimento de %s">'
         '<img src="https://i.ytimg.com/vi/%s/hqdefault.jpg" alt="" loading="lazy" width="480" height="360" onerror="this.remove()">'
@@ -428,7 +421,7 @@ def build_home():
 <section class="hero"><div class="wrap hero-grid">
 <div>
 <h1>Quem aparece mais vende mais.</h1>
-<p class="lead">A CR8 Conecta é uma agência de marketing e vendas de Curitiba. Colocamos sua empresa na frente de quem já procura o que você faz e organizamos o comercial para transformar cada contato em cliente.</p>
+<p class="lead">Agência de marketing e vendas de Curitiba. Colocamos sua empresa na frente de quem já procura o que você faz e organizamos o comercial para fechar mais.</p>
 <div class="btn-row"><a class="btn btn-primary" href="{WA_URL}" data-cta="whatsapp" target="_blank" rel="noopener">Pedir diagnóstico gratuito</a><a class="btn btn-ghost" href="{c.link(PAR['slug'])}">Conhecer o Método PAR 360</a></div>
 <p class="fine">Diagnóstico gratuito, sem compromisso. Retorno em até 24 horas.</p>
 </div>
@@ -439,19 +432,14 @@ def build_home():
 
 {ledger("Resultados de clientes", cases_table(), "Números de empresas que já aplicaram o método, medidos em vendas fechadas.")}
 
-<section class="section" id="metodo"><div class="wrap ledger"><div class="ledger-head"><h2>Três pilares, um só sistema</h2><p>O Método PAR 360 junta posicionamento, atração e retenção em um gerador de vendas contínuo, para a empresa crescer de forma previsível.</p><p><a href="{c.link(PAR['slug'])}">Ver o método completo</a></p></div>
+<section class="section" id="depoimentos"><div class="wrap"><h2>Na voz de quem já vive o resultado</h2><div class="videos" style="margin-top:2rem">{videos}</div></div></section>
+
+<section class="section" id="metodo"><div class="wrap ledger"><div class="ledger-head"><h2>Três pilares, um só sistema</h2><p>O Método PAR 360 junta posicionamento, atração e retenção em um gerador de vendas contínuo, para a empresa crescer de forma previsível.</p><p>Cada solução tem a sua página: escolha pelo pilar ou comece pelo diagnóstico gratuito.</p><p><a href="{c.link(PAR['slug'])}">Ver o método completo</a></p></div>
 <div class="pillars">{art.par_loop()}{pillars_html}</div></div></section>
 
-{ledger("Soluções", sol_list, "Uma página para cada solução. Escolha a que mais interessa ou comece pelo diagnóstico gratuito.", section_id="solucoes")}
-
-{trends_section(c)}
-
 <section class="section"><div class="wrap ledger"><div class="ledger-head"><h2>Para quem é o método</h2><p>O Método PAR 360 foi desenhado para empresas que já têm mercado e clientes.</p></div>
-<div class="two-col"><div><h3>Faz sentido se</h3>{checks(FAZ_SENTIDO)}</div><div><h3>Talvez ainda não seja o momento se</h3>{checks(NAO_AINDA, no=True)}</div></div></div></section>
-
-{ledger("Segmentos e região", '<div class="prose"><p>Já aplicamos o método em ' + esc(seg_text) + '. O encaixe é de empresas de serviços e comércio especializado com ticket médio alto e decisão de compra mais longa.</p><p>Com base em Curitiba, atendemos empresas da cidade e da região metropolitana, e também clientes de outros estados e dos Estados Unidos. Se o seu segmento não está na lista, o diagnóstico confirma o encaixe.</p></div>')}
-
-<section class="section" id="depoimentos"><div class="wrap"><h2>Na voz de quem já vive o resultado</h2><div class="videos" style="margin-top:2rem">{videos}</div></div></section>
+<div><div class="two-col"><div><h3>Faz sentido se</h3>{checks(FAZ_SENTIDO)}</div><div><h3>Talvez ainda não seja o momento se</h3>{checks(NAO_AINDA, no=True)}</div></div>
+<div class="prose" style="margin-top:2.2rem"><h3>Segmentos e região</h3><p>Já aplicamos o método em {esc(seg_text)}. O encaixe é de empresas de serviços e comércio especializado com ticket médio alto e decisão de compra mais longa.</p><p>Com base em Curitiba, atendemos empresas da cidade e da região metropolitana, e também clientes de outros estados e dos Estados Unidos. Se o seu segmento não está na lista, o diagnóstico confirma o encaixe.</p></div></div></div></section>
 
 {ledger("Quem está por trás", '<div class="prose"><p>A CR8 Conecta foi fundada em 2021 por Carlos da Silva. Começamos com tráfego pago e evoluímos para o Método PAR 360, porque gerar contatos deixou de bastar: o resultado depende do que acontece antes e depois do anúncio.</p><p>Hoje o time reúne estratégia, copywriting, tráfego pago, automações e social media. <a href="' + c.link("sobre") + '">Conheça a CR8 Conecta e o time</a>.</p></div>' + faces_html(c))}
 
@@ -463,30 +451,39 @@ def build_home():
     write_page("", html_text)
 
 
+def mid_cta(c):
+    return ('<section class="section mid-cta" aria-label="Diagnóstico gratuito"><div class="wrap mid-cta-row">'
+            '<p>Quer saber se isso serve para a sua empresa?</p>'
+            f'<a class="btn btn-primary" href="{WA_URL}" data-cta="whatsapp" target="_blank" rel="noopener">Pedir diagnóstico gratuito</a>'
+            '</div></section>')
+
+
 def crm_sections(c):
+    # Ilustrações ficam só no desktop (classe only-desktop): no celular a página fica mais curta e direta.
     origem = ('<div class="prose"><p>Sem CRM, a plataforma de anúncios só sabe quantas pessoas clicaram ou chamaram. Ela não sabe quem virou cliente. Com o CRM CR8 Conecta, cada contato entra com a origem registrada (campanha, anúncio e público) e, quando a venda acontece, a informação volta para o Google Ads e para o Meta Ads.</p>'
               '<p>As plataformas passam a otimizar para quem compra, e não só para quem clica. Você enxerga quais criativos e quais públicos geram venda e investe neles. Com o tempo, a campanha fica mais inteligente e tende a reduzir o custo por contato qualificado e por venda.</p></div>'
-              + '<div style="margin-top:1.6rem">' + art.crm_feedback() + '</div>'
+              + '<div class="only-desktop" style="margin-top:1.6rem">' + art.crm_feedback() + '</div>'
               + '<p class="fine-print">Esse retorno usa a API de Conversões da Meta e a importação de conversões do Google Ads. O resultado depende do volume de dados, do mercado e da qualidade do atendimento, e não prometemos um percentual de redução.</p>')
     auto = ('<div class="prose"><p>O CRM trabalha entre uma conversa e outra. Cada contato novo entra no funil sozinho, recebe a primeira resposta em segundos e é acompanhado nos dias certos, sem depender da memória de ninguém.</p></div>'
             + art.crm_autos()
-            + '<h3 style="margin-top:2.4rem;margin-bottom:1rem">Como um fluxo funciona por dentro</h3>'
+            + '<div class="only-desktop"><h3 style="margin-top:2.4rem;margin-bottom:1rem">Como um fluxo funciona por dentro</h3>'
             + '<p class="muted" style="margin-bottom:1.2rem">Exemplo de uma imobiliária: quando a IA pede ajuda humana, o CRM decide para quem a conversa vai e em que etapa o cartão fica.</p>'
-            + art.crm_flow())
-    ia = ('<div class="prose"><p>O CRM pode contar com inteligência artificial. O agente de IA trabalha dentro do funil: atende o contato assim que ele chega, entende o que ele precisa e só chama a equipe quando faz sentido. Quem vende recebe a conversa pronta, com o histórico, em vez de começar do zero.</p></div>'
-          + art.crm_ia()
-          + '<p class="fine-print">O agente é configurado para o seu negócio, com o que ele pode e não pode responder. Veja os detalhes em <a href="' + c.link("automacao-ia-atendimento") + '">Automação e IA no atendimento</a>.</p>')
+            + art.crm_flow() + '</div>'
+            + '<h3 style="margin-top:2.4rem;margin-bottom:1rem">Inteligência artificial dentro do CRM</h3>'
+            + '<div class="prose"><p>O CRM pode contar com inteligência artificial. O agente de IA trabalha dentro do funil: atende o contato assim que ele chega, entende o que ele precisa e só chama a equipe quando faz sentido. Quem vende recebe a conversa pronta, com o histórico, em vez de começar do zero.</p></div>'
+            + art.crm_ia()
+            + '<p class="fine-print">O agente é configurado para o seu negócio, com o que ele pode e não pode responder. Veja os detalhes em <a href="' + c.link("automacao-ia-atendimento") + '">Automação e IA no atendimento</a>.</p>')
     vend = ('<div class="prose"><p>O CRM não serve só para negociações longas. Para quem tem volume, ele é o jeito de controlar a rotina da equipe sem depender de cobrança manual: cada vendedor sabe o que fazer no dia e o gestor enxerga o que está acontecendo, sem planilha e sem perguntar no grupo.</p></div>'
             + art.crm_vendedores())
-    inbox = ('<div class="stack-fig"><div class="prose"><p>WhatsApp, Instagram e Facebook chegam à mesma caixa de entrada, com o histórico de cada pessoa e a etapa do funil ao lado. A equipe responde de um lugar só, sem trocar de aplicativo, e o dono enxerga tudo o que está acontecendo.</p><p>Os canais disponíveis dependem da configuração da conta. No diagnóstico, definimos quais fazem sentido para a sua operação.</p></div>' + art.crm_inbox() + '</div>')
-    mobile = ('<div class="stack-fig"><div class="prose"><p>A equipe acompanha conversas, oportunidades e tarefas pelo celular e recebe avisos quando algo precisa de ação: contato novo, visita marcada, proposta sem resposta. Quem está na rua não perde o momento de retomar o cliente.</p></div>' + art.crm_mobile() + '</div>')
+    conv = ('<div class="stack-fig"><div class="prose"><p>WhatsApp, Instagram e Facebook chegam à mesma caixa de entrada, com o histórico de cada pessoa e a etapa do funil ao lado. A equipe responde de um lugar só, sem trocar de aplicativo, e o dono enxerga tudo o que está acontecendo.</p><p>Os canais disponíveis dependem da configuração da conta. No diagnóstico, definimos quais fazem sentido para a sua operação.</p></div>'
+            + '<div class="only-desktop">' + art.crm_inbox() + '</div>'
+            + '<div class="prose"><p>A equipe acompanha conversas, oportunidades e tarefas pelo celular e recebe avisos quando algo precisa de ação: contato novo, visita marcada, proposta sem resposta. Quem está na rua não perde o momento de retomar o cliente.</p></div>'
+            + '<div class="only-desktop">' + art.crm_mobile() + '</div></div>')
     caps = ('<div class="prose" style="margin-bottom:1.4rem"><p>Em vez de uma ferramenta para o funil, outra para o WhatsApp, outra para os formulários e outra para os lembretes, o CRM CR8 Conecta reúne tudo em uma plataforma. Menos assinaturas para pagar e acompanhar, e um só lugar para a equipe aprender.</p></div>' + art.crm_caps())
     return (ledger("Do anúncio à venda, e da venda de volta ao anúncio", origem, "Por que o CRM faz as campanhas ficarem mais inteligentes.", section_id="origem-do-lead")
-            + ledger("Automações que trabalham por você", auto, "Resposta, follow-up e avisos no momento certo.", section_id="automacoes")
-            + ledger("Inteligência artificial dentro do CRM", ia, "Atendimento, qualificação e agenda.", section_id="inteligencia-artificial")
+            + ledger("Automações e inteligência artificial", auto, "Resposta, follow-up, qualificação e agenda.", section_id="automacoes")
             + ledger("A rotina dos vendedores sob controle", vend, "Para quem tem volume e equipe.", section_id="rotina-dos-vendedores")
-            + ledger("Todas as conversas em um só lugar", inbox, "Uma caixa de entrada para cada canal.", section_id="conversas")
-            + ledger("No celular, a equipe age na hora certa", mobile, "Avisos e acompanhamento fora do computador.", section_id="celular")
+            + ledger("Todas as conversas, no computador e no celular", conv, "Uma caixa de entrada para cada canal.", section_id="conversas")
             + ledger("Uma plataforma no lugar de várias ferramentas", caps, "O que vem no CRM CR8 Conecta.", section_id="plataforma"))
 
 
@@ -494,16 +491,16 @@ def extra_sections(c, s):
     """Mockups e blocos de IA das páginas de Perfil da Empresa no Google e de Criação de Sites."""
     if s["slug"] == "google-meu-negocio":
         met = ('<div class="prose"><p>Depois da otimização, você acompanha o que o perfil gera: quantas pessoas viram a empresa na Busca e no Maps, quantas ligaram, pediram rota ou chamaram no WhatsApp. É a leitura que mostra o que está funcionando e o que ajustar.</p></div>'
-               '<div class="stack-fig">' + art.metricas() + '</div>')
+               '<div class="stack-fig only-desktop">' + art.metricas() + '</div>')
         ia = ('<div class="prose"><p>Hoje muita gente pergunta a ferramentas de inteligência artificial qual empresa contratar. Essas ferramentas recomendam o que entendem sem ambiguidade. Por isso, além de aparecer no Google e no Maps, trabalhamos o perfil para a sua empresa também ser entendida e citada nas respostas de IA, de forma orgânica, sem anúncio pago.</p>'
               '<p>Na prática: descrição e serviços claros, categorias corretas, avaliações reais e recentes, perguntas e respostas e dados iguais aos do site e das redes sociais. Nenhuma ferramenta garante que vai recomendar uma empresa, e por isso fazemos tudo o que está ao alcance dela.</p></div>'
-              '<div class="stack-fig">' + art.ia_resposta() + '</div>')
+              '<div class="stack-fig only-desktop">' + art.ia_resposta() + '</div>')
         return (ledger("Acompanhe os números do perfil", met, "Visualizações, ligações, rotas e cliques.", section_id="numeros")
                 + ledger("Também nas respostas de inteligência artificial", ia, "Aparecer no Google e ser recomendado pela IA.", section_id="inteligencia-artificial"))
     if s["slug"] == "criacao-de-sites":
         ia = ('<div class="prose"><p>Um site bom precisa ser encontrado por quem pesquisa no Google e também por quem pergunta a uma ferramenta de inteligência artificial. Trabalhamos para o seu site e a sua empresa aparecerem nas respostas de IA de forma orgânica, sem anúncio pago.</p>'
               '<p>Na prática: texto claro sobre o que a empresa faz, para quem, onde atende e quais são os diferenciais, perguntas frequentes escritas como o cliente pergunta, dados estruturados e informações iguais às do Perfil da Empresa no Google. Nenhuma ferramenta garante a recomendação, mas a empresa organizada tem mais chance de ser entendida.</p></div>'
-              '<div class="stack-fig">' + art.ia_resposta() + '</div>')
+              '<div class="stack-fig only-desktop">' + art.ia_resposta() + '</div>')
         return (ledger("Também nas respostas de inteligência artificial", ia, "Aparecer no Google e ser recomendado pela IA.", section_id="inteligencia-artificial"))
     return ""
 
@@ -547,6 +544,7 @@ def build_solution(s):
 </div></section>
 {ledger(s["what_title"], what_html)}
 {ledger("O que entregamos", deliver(s["deliver"]))}
+{mid_cta(c)}
 {crm_sections(c) if s["slug"] == "crm-de-vendas" else ""}
 {extra_sections(c, s)}
 {ledger("Como funciona", steps_html)}
@@ -651,7 +649,7 @@ def build_about():
         '<ul class="team" style="margin-top:2.5rem">%s</ul>' % team
     )
     body = f"""<main id="conteudo">
-<section class="page-hero"><div class="wrap">
+<section class="page-hero hero-light"><div class="wrap">
 {crumbs(c, [("Início", ""), ("Sobre", None)])}
 <h1>Uma agência de Curitiba focada em resultado comercial</h1>
 <p class="lead">A CR8 Conecta é uma agência de marketing e vendas de Curitiba, fundada em 2021. Trabalhamos com empresas de serviços e comércio especializado que já têm mercado e querem vender de forma previsível.</p>
@@ -692,7 +690,7 @@ def build_contact():
 <div><button class="btn btn-primary" type="submit">Enviar pelo WhatsApp</button><p class="hint" style="margin-top:0.8rem">Ao enviar, o WhatsApp abre com a mensagem pronta para você conferir. Este site não guarda os dados do formulário.</p></div>
 </form>"""
     body = f"""<main id="conteudo">
-<section class="page-hero"><div class="wrap">
+<section class="page-hero hero-light"><div class="wrap">
 {crumbs(c, [("Início", ""), ("Contato", None)])}
 <h1>Vamos olhar sua empresa de fora</h1>
 <p class="lead">O diagnóstico gratuito analisa como sua empresa aparece, atrai e converte hoje e mostra onde estão as oportunidades. Sem compromisso, com retorno em até 24 horas.</p>
