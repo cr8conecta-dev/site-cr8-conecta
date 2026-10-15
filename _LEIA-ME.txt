@@ -1,0 +1,3 @@
+Backup das páginas públicas de https://cr8conecta.com.br feito em 2026-10-15.
+Contém só o que o navegador consegue baixar (HTML, CSS, JS, imagens, fontes).
+NÃO contém arquivos do servidor (.htaccess, e-mails, banco de dados). Para isso, use o backup do hPanel da Hostinger.
