@@ -111,7 +111,7 @@ def footer(c):
 <li><a href="{WA_URL}" data-cta="whatsapp" target="_blank" rel="noopener">WhatsApp {PHONE}</a></li>
 <li><a href="mailto:{EMAIL}" data-cta="email">{EMAIL}</a></li>
 <li><a href="{INSTAGRAM}" rel="noopener" target="_blank">Instagram @cr8conecta</a></li>
-<li>Curitiba, PR. Atendimento em todo o Brasil.</li>
+<li>Curitiba, PR. Atendimento em Curitiba e região metropolitana, e também em outros estados.</li>
 </ul></div>
 </div>
 <div class="footer-bottom"><span>© 2026 CR8 Conecta. Todos os direitos reservados.</span><span>Atualizado em {MODIFIED_HUMAN}</span></div>
@@ -202,11 +202,16 @@ def ledger(title, body, sub=None, section_id=None, label_id=None):
 
 
 # ---------------------------------------------------------------- SEO / schema
-def org_node():
+ALT_NAMES_HOME = ["Cr8 Conecta", "Agência de Marketing Digital | Cr8 Conecta"]
+SAMEAS_HOME = ["https://www.facebook.com/cr8conecta/", "https://www.google.com/maps?cid=13746290579143037967", "https://br.linkedin.com/company/cr8-conecta"]
+
+
+def org_node(home=False):
     return {
         "@type": ["ProfessionalService", "LocalBusiness"],
         "@id": SITE + "/#organization",
         "name": NAME,
+        **({"alternateName": ALT_NAMES_HOME} if home else {}),
         "url": SITE + "/",
         "hasMap": "https://www.google.com/maps?cid=13746290579143037967",
         "logo": {"@type": "ImageObject", "url": SITE + "/assets/logos/cr8-conecta-logo.png", "width": logo_w, "height": logo_h},
@@ -227,7 +232,7 @@ def org_node():
             "Marketing digital", "Tráfego pago", "Google Ads", "Meta Ads", "Perfil da Empresa no Google", "Google Meu Negócio",
             "SEO local", "CRM", "Follow-up comercial", "Automação de atendimento", "Inteligência artificial no atendimento",
         ],
-        "sameAs": [INSTAGRAM],
+        "sameAs": [INSTAGRAM] + (SAMEAS_HOME if home else []),
         "contactPoint": {"@type": "ContactPoint", "telephone": PHONE_E164, "email": EMAIL, "contactType": "customer service", "availableLanguage": "pt-BR", "areaServed": "BR"},
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
@@ -309,7 +314,6 @@ def head(c, title, desc, graph, noindex=False):
 <link rel="icon" type="image/png" href="{c.asset('img/favicon-32.png')}" sizes="32x32">
 <link rel="apple-touch-icon" href="{c.root}apple-touch-icon.png">
 <link rel="preload" href="{c.asset('fonts/archivo-latin.woff2')}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{c.asset('fonts/newsreader-latin.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{c.asset('css/style.css')}">
 <script type="application/ld+json">{ld}</script>
 {gtm_head}
@@ -396,7 +400,7 @@ def build_home():
     title = "CR8 Conecta | Agência de marketing e vendas em Curitiba"
     desc = "Agência de marketing e vendas em Curitiba. Posicionamento, tráfego pago e CRM para empresas de serviços venderem todo mês, sem depender só de indicação."
     url = c.url()
-    graph = [org_node(), website_node(), webpage_node(url, title, desc, extra={"about": {"@id": SITE + "/#organization"}}), faq_node(url, HOME_FAQ)]
+    graph = [org_node(home=True), website_node(), webpage_node(url, title, desc, extra={"about": {"@id": SITE + "/#organization"}}), faq_node(url, HOME_FAQ)]
 
     pillars_html = ""
     for p in PAR["pillars"]:
@@ -420,7 +424,7 @@ def build_home():
     body = f"""<main id="conteudo">
 <section class="hero"><div class="wrap hero-grid">
 <div>
-<h1>Quem aparece mais vende mais.</h1>
+<h1>Agência de marketing e vendas em Curitiba: quem aparece mais, vende mais</h1>
 <p class="lead">Agência de marketing e vendas de Curitiba. Colocamos sua empresa na frente de quem já procura o que você faz e organizamos o comercial para fechar mais.</p>
 <div class="btn-row"><a class="btn btn-primary" href="{WA_URL}" data-cta="whatsapp" target="_blank" rel="noopener">Pedir diagnóstico gratuito</a><a class="btn btn-ghost" href="{c.link(PAR['slug'])}">Conhecer o Método PAR 360</a></div>
 <p class="fine">Diagnóstico gratuito, sem compromisso. Retorno em até 24 horas.</p>
@@ -435,11 +439,11 @@ def build_home():
 <section class="section" id="depoimentos"><div class="wrap"><h2>Na voz de quem já vive o resultado</h2><div class="videos" style="margin-top:2rem">{videos}</div></div></section>
 
 <section class="section" id="metodo"><div class="wrap ledger"><div class="ledger-head"><h2>Três pilares, um só sistema</h2><p>O Método PAR 360 junta posicionamento, atração e retenção em um gerador de vendas contínuo, para a empresa crescer de forma previsível.</p><p>Cada solução tem a sua página: escolha pelo pilar ou comece pelo diagnóstico gratuito.</p><p><a href="{c.link(PAR['slug'])}">Ver o método completo</a></p></div>
-<div class="pillars">{art.par_loop()}{pillars_html}</div></div></section>
+<div class="pillars">{pillars_html}</div></div></section>
 
 <section class="section"><div class="wrap ledger"><div class="ledger-head"><h2>Para quem é o método</h2><p>O Método PAR 360 foi desenhado para empresas que já têm mercado e clientes.</p></div>
 <div><div class="two-col"><div><h3>Faz sentido se</h3>{checks(FAZ_SENTIDO)}</div><div><h3>Talvez ainda não seja o momento se</h3>{checks(NAO_AINDA, no=True)}</div></div>
-<div class="prose" style="margin-top:2.2rem"><h3>Segmentos e região</h3><p>Já aplicamos o método em {esc(seg_text)}. O encaixe é de empresas de serviços e comércio especializado com ticket médio alto e decisão de compra mais longa.</p><p>Com base em Curitiba, atendemos empresas da cidade e da região metropolitana, e também clientes de outros estados e dos Estados Unidos. Se o seu segmento não está na lista, o diagnóstico confirma o encaixe.</p></div></div></div></section>
+<div class="prose" style="margin-top:2.2rem"><h2 class="h3-look">Agência de marketing em Curitiba e região metropolitana</h2><p>Já aplicamos o método em {esc(seg_text)}. O encaixe é de empresas de serviços e comércio especializado com ticket médio alto e decisão de compra mais longa.</p><p>Com base em Curitiba, atendemos empresas da cidade e da região metropolitana, e também clientes de outros estados e dos Estados Unidos. Se o seu segmento não está na lista, o diagnóstico confirma o encaixe.</p></div></div></div></section>
 
 {ledger("Quem está por trás", '<div class="prose"><p>A CR8 Conecta foi fundada em 2021 por Carlos da Silva. Começamos com tráfego pago e evoluímos para o Método PAR 360, porque gerar contatos deixou de bastar: o resultado depende do que acontece antes e depois do anúncio.</p><p>Hoje o time reúne estratégia, copywriting, tráfego pago, automações e social media. <a href="' + c.link("sobre") + '">Conheça a CR8 Conecta e o time</a>.</p></div>' + faces_html(c))}
 

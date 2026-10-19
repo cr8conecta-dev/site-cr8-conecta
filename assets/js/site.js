@@ -182,7 +182,8 @@
     var groups = [
       ".ledger-head", ".pillars > *", ".index li", ".deliver > div", ".faq details", ".steps li",
       ".videos > .video", ".cases tbody tr", ".cta-box", ".facts", ".contact-list", ".map", ".two-col > *",
-      ".team > *", ".stack-fig > .fig", ".checks li", ".prose", ".note", ".ledger > div:not(.ledger-head) > .fig", ".form"
+      ".team > *", ".stack-fig > .fig", ".checks li", ".prose", ".note", ".ledger > div:not(.ledger-head) > .fig", ".form",
+      ".caps li", ".autos li", ".steps"
     ];
     var seen = [];
     groups.forEach(function (sel) {
@@ -205,6 +206,12 @@
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
     seen.forEach(function (el) { io.observe(el); });
+
+    // A luz de fundo de cada seção só se move enquanto a seção está na tela (poupa o celular)
+    var live = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle("is-live", en.isIntersecting); });
+    }, { threshold: 0.05 });
+    document.querySelectorAll("main > .section").forEach(function (s) { live.observe(s); });
   }
 
 })();

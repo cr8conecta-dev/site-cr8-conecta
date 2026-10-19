@@ -39,7 +39,7 @@
   --purple-soft: #ece8e3;
   --ink: #0d2743;
   --ui: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --serif: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --wrap: 1200px;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
   color-scheme: dark;
@@ -54,7 +54,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--serif);
-  font-size: 1.1875rem;
+  font-size: 1.0625rem;
   line-height: 1.65;
   font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
@@ -454,7 +454,7 @@ p { text-wrap: pretty; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 40rem) {
-  body { font-size: 1.125rem; }
+  body { font-size: 1.0625rem; }
   .two-col, .videos, .team, .footer-grid { grid-template-columns: 1fr; }
   .index a { grid-template-columns: 1fr; gap: 0.3rem; }
   .cases thead { position: absolute; left: -9999px; }
@@ -835,39 +835,6 @@ p { text-wrap: pretty; }
 .btn-ghost:hover { color: #fff; }
 .site-header { background: rgba(10, 28, 46, 0.94); }
 .brand img { filter: none; }
-
-/* Seções claras alternadas: branco e nude */
-main > .section:nth-of-type(4n+2),
-main > .section:nth-of-type(4n) {
-  --bg: #ffffff; --bg-2: #f4f2ef; --bg-3: #ebe7e2;
-  --line: #cfc9c2; --line-soft: #e0dbd5;
-  --text: #0d2743; --muted: #4e6277; --head: #0d2743;
-  --card-top: #ffffff; --blue: #3d5a7f; --blue-bright: #0d2743;
-  --glow-blue: rgba(13, 39, 67, 0.18); --shadow-card: 0 18px 40px -26px rgba(13, 39, 67, 0.35); --shadow-lift: 0 26px 50px -28px rgba(13, 39, 67, 0.45);
-  background: var(--bg); color: var(--text);
-}
-main > .section:nth-of-type(4n) { --bg: #dad5cf; --bg-2: #e6e2dd; --line: #bdb6ae; --line-soft: #c9c3bb; --card-top: #f4f2ef; }
-main > .section:nth-of-type(4n+2) + .section,
-main > .section:nth-of-type(4n) + .section { border-top: 0; }
-main > .section:nth-of-type(4n+2), main > .section:nth-of-type(4n) { border-top: 0; }
-main > .section:nth-of-type(4n+2) h1, main > .section:nth-of-type(4n) h1,
-main > .section:nth-of-type(4n+2) h2, main > .section:nth-of-type(4n) h2,
-main > .section:nth-of-type(4n+2) h3, main > .section:nth-of-type(4n) h3,
-main > .section:nth-of-type(4n+2) h4, main > .section:nth-of-type(4n) h4,
-main > .section:nth-of-type(4n+2) .index .name, main > .section:nth-of-type(4n) .index .name { color: var(--head); }
-main > .section:nth-of-type(4n+2) .lead, main > .section:nth-of-type(4n) .lead,
-main > .section:nth-of-type(4n+2) .pillar p, main > .section:nth-of-type(4n) .pillar p,
-main > .section:nth-of-type(4n+2) .faq .answer, main > .section:nth-of-type(4n) .faq .answer,
-main > .section:nth-of-type(4n+2) .prose p, main > .section:nth-of-type(4n) .prose p { color: #25384d; }
-main > .section:nth-of-type(4n+2) a:not(.btn), main > .section:nth-of-type(4n) a:not(.btn) { color: #0d2743; }
-main > .section:nth-of-type(4n+2) a:not(.btn):hover, main > .section:nth-of-type(4n) a:not(.btn):hover { color: #3d5a7f; }
-main > .section:nth-of-type(4n+2) .btn-primary, main > .section:nth-of-type(4n) .btn-primary { background: #0d2743; color: #fff; }
-main > .section:nth-of-type(4n+2) .btn-primary:hover, main > .section:nth-of-type(4n) .btn-primary:hover { background: #3d5a7f; color: #fff; }
-main > .section:nth-of-type(4n+2) .btn-ghost, main > .section:nth-of-type(4n) .btn-ghost { color: #0d2743; }
-main > .section:nth-of-type(4n+2) .pillar.p3, main > .section:nth-of-type(4n) .pillar.p3 { --c: #0d2743; }
-main > .section:nth-of-type(4n+2) .pillar.p2, main > .section:nth-of-type(4n) .pillar.p2 { --c: #8c9eac; }
-main > .section:nth-of-type(4n+2) .index .t-r, main > .section:nth-of-type(4n) .index .t-r { --c: #0d2743; }
-main > .section:nth-of-type(4n+2) .index .t-a, main > .section:nth-of-type(4n) .index .t-a { --c: #8c9eac; }
 /* ilustrações e cartões escuros mantêm o tema escuro dentro de seções claras */
 .fig, .serp, .win, .video {
   --bg: #0a1c2e; --bg-2: #0f2740; --bg-3: #14304c; --line: #27425e; --line-soft: #183249;
@@ -875,29 +842,6 @@ main > .section:nth-of-type(4n+2) .index .t-a, main > .section:nth-of-type(4n) .
   color: var(--text);
 }
 .fig h1, .fig h2, .fig h3, .fig h4, .serp h3, .win h3 { color: #fff; }
-
-main > .section:nth-of-type(4n+2) .cases td:first-child,
-main > .section:nth-of-type(4n+2) .cases .n,
-main > .section:nth-of-type(4n+2) .deliver dt,
-main > .section:nth-of-type(4n+2) .faq summary,
-main > .section:nth-of-type(4n+2) .facts dd,
-main > .section:nth-of-type(4n+2) .contact-list a,
-main > .section:nth-of-type(4n+2) .caps b,
-main > .section:nth-of-type(4n+2) .autos b,
-main > .section:nth-of-type(4n+2) .crumbs a,
-main > .section:nth-of-type(4n+2) .pillar h3,
-main > .section:nth-of-type(4n+2) .video .who,
-main > .section:nth-of-type(4n) .cases td:first-child,
-main > .section:nth-of-type(4n) .cases .n,
-main > .section:nth-of-type(4n) .deliver dt,
-main > .section:nth-of-type(4n) .faq summary,
-main > .section:nth-of-type(4n) .facts dd,
-main > .section:nth-of-type(4n) .contact-list a,
-main > .section:nth-of-type(4n) .caps b,
-main > .section:nth-of-type(4n) .autos b,
-main > .section:nth-of-type(4n) .crumbs a,
-main > .section:nth-of-type(4n) .pillar h3,
-main > .section:nth-of-type(4n) .video .who { color: var(--head); }
 .fig .caps b, .fig .autos b, .fig .ib-row b, .fig .note-m b, .fig .wa-top b { color: #fff; }
 
 
@@ -915,12 +859,6 @@ main > .section:nth-of-type(4n) .video .who { color: var(--head); }
   --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 2px 6px rgba(2, 10, 22, 0.35), 0 18px 36px -20px rgba(2, 10, 22, 0.8);
   --spot: radial-gradient(20rem circle at var(--mx, 50%) var(--my, 0%), rgba(197, 209, 219, 0.13), transparent 62%);
 }
-main > .section:nth-of-type(4n+2), main > .section:nth-of-type(4n) {
-  --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 1px 3px rgba(13, 39, 67, 0.08), 0 16px 30px -18px rgba(13, 39, 67, 0.3);
-  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 2px 5px rgba(13, 39, 67, 0.07), 0 22px 40px -22px rgba(13, 39, 67, 0.34), 0 48px 80px -50px rgba(13, 39, 67, 0.4);
-  --shadow-lift: 0 1px 0 #fff inset, 0 4px 10px rgba(13, 39, 67, 0.08), 0 30px 54px -22px rgba(13, 39, 67, 0.42), 0 56px 90px -50px rgba(13, 39, 67, 0.45);
-  --spot: radial-gradient(20rem circle at var(--mx, 50%) var(--my, 0%), rgba(140, 158, 172, 0.22), transparent 62%);
-}
 .serp, .fig, .cases, .pillar, .pillar:first-child, .contact-list, .facts, .video, .note {
   box-shadow: var(--shadow-card);
 }
@@ -929,11 +867,6 @@ main > .section:nth-of-type(4n+2), main > .section:nth-of-type(4n) {
 .faq details, .faq details:last-child { box-shadow: var(--shadow-soft); }
 .faq details[open] { box-shadow: var(--shadow-soft), 0 24px 44px -28px var(--glow-blue); }
 .pillar:hover, .video:hover { box-shadow: var(--shadow-lift); }
-/* corrige o hover do índice dentro das seções claras */
-main > .section:nth-of-type(4n+2) .index a:hover, main > .section:nth-of-type(4n) .index a:hover {
-  background: var(--spot), linear-gradient(180deg, #fff, var(--bg-3)); border-color: var(--line); box-shadow: var(--shadow-lift);
-}
-main > .section:nth-of-type(4n+2) .index a:hover .name, main > .section:nth-of-type(4n) .index a:hover .name { color: #0d2743; }
 
 /* Etiqueta de pilar nas tendências */
 .fine-tag { display: inline-block; margin-left: 0.6rem; padding: 0.15rem 0.65rem; border-radius: 999px; font-family: var(--ui); font-weight: 650; font-size: 0.75rem; letter-spacing: 0.02em; vertical-align: 0.12em; color: var(--blue-bright); background: rgba(140, 158, 172, 0.16); box-shadow: inset 0 0 0 1px var(--line); }
@@ -1096,7 +1029,6 @@ main > .section:nth-of-type(4n+2) .index a:hover .name, main > .section:nth-of-t
 .btn-ghost { background: transparent; box-shadow: inset 0 0 0 1px rgba(255,255,255,.35); }
 .btn-ghost:hover { transform: none; box-shadow: inset 0 0 0 1px #fff; }
 .nav-button { border-radius: 4px; }
-main > .section:nth-of-type(4n+2) .btn-primary, main > .section:nth-of-type(4n) .btn-primary { background: #0d2743; color: #fff; }
 
 /* figuras: painel liso, sem brilho */
 .serp, .fig { background: var(--bg-2); box-shadow: none; border: 1px solid var(--line-soft); }
@@ -1120,7 +1052,6 @@ main > .section:nth-of-type(4n+2) .btn-primary, main > .section:nth-of-type(4n) 
   background: transparent; border: 0; border-radius: 0; box-shadow: none; transform: none; margin: 0;
 }
 .index a { padding: 1.3rem 0; }
-.index a:hover, main > .section:nth-of-type(4n+2) .index a:hover, main > .section:nth-of-type(4n) .index a:hover { background: transparent; box-shadow: none; transform: none; }
 .index a:hover .name { text-decoration: underline; text-underline-offset: .2em; }
 .deliver > div, .deliver > div:last-child { padding: 1.15rem 0; border-top: 1px solid var(--line-soft); }
 .deliver > div:last-child { border-bottom: 1px solid var(--line-soft); }
@@ -1132,7 +1063,6 @@ main > .section:nth-of-type(4n+2) .btn-primary, main > .section:nth-of-type(4n) 
 .contact-list > div:first-child, .facts > div:first-child { border-top: 1px solid var(--line-soft); }
 .contact-list > div:last-child, .facts > div:last-child { border-bottom: 1px solid var(--line-soft); }
 .steps li::before { background: #8c9eac; box-shadow: none; }
-main > .section:nth-of-type(4n+2) .steps li::before, main > .section:nth-of-type(4n) .steps li::before { background: #0d2743; }
 .note { box-shadow: none; }
 .fine-tag { border-radius: 3px; box-shadow: none; background: transparent; border: 1px solid var(--line); color: var(--muted); }
 
@@ -1200,3 +1130,431 @@ h3, .pillar h3, .index .name { font-weight: 600; font-stretch: 100%; }
 .page-hero.hero-light a:not(.btn) { color: #0d2743; }
 .page-hero.hero-light .btn-primary { background: #0d2743; color: #fff; }
 .page-hero.hero-light .btn-ghost { color: #0d2743; box-shadow: inset 0 0 0 1px #0d2743; }
+
+/* Cabeçalho das seções: todos os parágrafos com o mesmo estilo; link como ação discreta */
+.ledger-head p { color: var(--muted); font-size: 1.05rem; line-height: 1.55; }
+.ledger-head p + p { margin-top: 0.8rem; }
+.ledger-head p a { font-family: var(--ui); font-weight: 600; font-size: 0.98rem; color: var(--head); text-decoration-thickness: 1px; text-underline-offset: 0.3em; }
+
+/* Pilares: cartões planos, sem sombra */
+.pillar { box-shadow: none; }
+
+/* Ilustrações e cartões: claros, para combinar com o ambiente claro (vídeos continuam escuros) */
+.fig, .serp, .win {
+  --bg: #ffffff; --bg-2: #f4f2ef; --bg-3: #ebe7e2; --line: #cfc9c2; --line-soft: #e0dbd5;
+  --text: #0d2743; --muted: #4e6277; --head: #0d2743; --card-top: #ffffff; --blue: #3d5a7f; --blue-bright: #0d2743;
+  color: var(--text);
+}
+.fig h1, .fig h2, .fig h3, .fig h4, .serp h3, .win h3 { color: var(--head); }
+.fig, .serp { background: #ffffff; border: 1px solid var(--line); }
+.fig b, .fig strong, .fig h4, .fig .t, .fig .name, .win b, .serp .t, .serp-row .t { color: var(--head); }
+.fig small, .fig em, .fig .st, .fig .follow, .fig .follow-chip, .serp-note { color: var(--muted); }
+.fig .bubble.them, .serp .bubble.them { background: var(--bg-3); color: var(--text); }
+.fig .bubble.us, .serp .bubble.us { background: #0d2743; color: #fff; }
+.fig .bubble em, .fig .ai-a, .fig .ai-a p { color: var(--text); }
+.fig .btnx, .fig .btnx.sm { background: #0d2743; color: #fff; }
+.serp-row .ico, .serp-row .bar { background: var(--line); }
+.serp-row.is-us { background: var(--bg-3); border-color: #0d2743; }
+.serp-badge { background: #0d2743; color: #fff; }
+.fig b, .fig strong, .fig h4, .fig .t, .fig .name, .win b, .serp .t, .serp-row .t, .serp-row.is-us .t, .kc b, .node b, .ib-row b { color: var(--head) !important; }
+.fig small, .fig em, .fig .st, .fig .follow, .serp-note, .ib-row small { color: var(--muted) !important; }
+.fig .bubble.us em, .fig .bubble.us b, .serp .bubble.us em, .fig .btnx, .serp-badge, .follow-chip.on, .fig .bubble.us { color: #fff !important; }
+.fig .ai-q, .fig .ai-q b { color: #0d2743 !important; }
+.fig .kc, .fig .kc.won { background: #ffffff; border: 1px solid var(--line-soft); }
+.fig .t5, .fig .lead-chip, .fig .ib-row.sel { background: var(--bg-3); }
+.fig .ib-row.sel { border-color: #0d2743; }
+.fig .follow { color: #fff !important; }
+.fig .st { background: var(--bg-3); }
+.fig .kc { background: #ffffff !important; }
+
+/* ===== CAPA CLARA em todas as páginas; resto do site em azul com gradiente e brilho ===== */
+.hero, .page-hero {
+  --bg: #f4f2ef; --bg-2: #ebe7e2; --bg-3: #e1dcd6; --line: #cfc9c2; --line-soft: #ddd8d1;
+  --text: #0d2743; --muted: #4e6277; --head: #0d2743; --card-top: #ffffff; --blue: #3d5a7f; --blue-bright: #0d2743;
+  background: var(--bg); color: var(--text);
+}
+.hero h1, .page-hero h1 { color: var(--head); }
+.hero .lead, .page-hero .lead, .hero p, .page-hero p { color: #25384d; }
+.hero a:not(.btn), .page-hero a:not(.btn) { color: #0d2743; }
+.hero .btn-primary, .page-hero .btn-primary { background: #0d2743; color: #fff; box-shadow: none; }
+.hero .btn-ghost, .page-hero .btn-ghost { color: #0d2743; box-shadow: inset 0 0 0 1px #0d2743; }
+.page-hero .pillar-flag { color: #0d2743; }
+
+/* Seções: azul profundo com luz azul suave, alternando dois tons */
+main > .section { position: relative; background: linear-gradient(180deg, #0a1c2e 0%, #0c2440 100%); }
+main > .section:nth-of-type(odd) {
+  background:
+    radial-gradient(900px 380px at 10% -12%, rgba(74, 144, 255, 0.18), transparent 62%),
+    linear-gradient(180deg, #0a1c2e 0%, #0c2440 100%);
+}
+main > .section:nth-of-type(even) {
+  background:
+    radial-gradient(1000px 440px at 90% -10%, rgba(74, 144, 255, 0.30), transparent 62%),
+    radial-gradient(700px 380px at 4% 112%, rgba(61, 139, 255, 0.16), transparent 60%),
+    linear-gradient(180deg, #0f3159 0%, #0b2643 100%);
+}
+main > .section + .section { border-top: 1px solid rgba(120, 170, 255, 0.14); }
+
+/* Brilho discreto nos cartões e nos botões das seções azuis */
+main > .section .pillar, main > .section .cases, main > .section .caps li, main > .section .autos li,
+main > .section .deliver > div, main > .section .index a, main > .section .video {
+  box-shadow: 0 0 0 1px rgba(120, 170, 255, 0.12), 0 18px 44px -28px rgba(61, 139, 255, 0.55);
+}
+main > .section .pillar:hover, main > .section .caps li:hover, main > .section .autos li:hover, main > .section .video:hover {
+  box-shadow: 0 0 0 1px rgba(150, 195, 255, 0.35), 0 22px 54px -26px rgba(74, 144, 255, 0.75);
+}
+main > .section .btn-primary { background: #fff; color: #0d2743; box-shadow: 0 10px 34px -10px rgba(110, 170, 255, 0.7); }
+main > .section .btn-ghost { color: #fff; box-shadow: inset 0 0 0 1px rgba(150, 195, 255, 0.45); }
+
+/* Convite final e cabeçalho/rodapé */
+.cta-band { background: radial-gradient(1100px 420px at 50% 0%, rgba(74, 144, 255, 0.28), transparent 65%), linear-gradient(180deg, #0c2440 0%, #081726 100%); }
+.cta-box { background: linear-gradient(135deg, rgba(25, 70, 130, 0.55), rgba(10, 28, 46, 0.65)); box-shadow: 0 0 0 1px rgba(150, 195, 255, 0.22), 0 30px 80px -40px rgba(61, 139, 255, 0.8); }
+.cta-box .btn-primary { background: #fff; color: #0d2743; box-shadow: 0 10px 34px -10px rgba(110, 170, 255, 0.7); }
+.cta-box .btn-ghost { color: #fff; }
+.site-footer { background: linear-gradient(180deg, #081726 0%, #060f1a 100%); }
+
+/* ===== Quadros suaves: cantos arredondados, espaço entre eles e brilho sem faixas ===== */
+:root { --suave-borda: rgba(150, 195, 255, 0.16); --suave-fundo: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)); --suave-brilho: 0 14px 34px -26px rgba(61, 139, 255, 0.55); }
+main .deliver, main .index { display: grid; gap: 14px; }
+main .deliver > div, main .deliver > div:last-child, main .index a {
+  margin: 0; padding: 1.15rem 1.45rem; border: 1px solid var(--suave-borda); border-radius: 18px;
+  background: var(--suave-fundo); box-shadow: var(--suave-brilho);
+}
+main .index a { transition: border-color 0.25s ease, box-shadow 0.25s ease; }
+main .index a:hover, main .deliver > div:hover { border-color: rgba(170, 210, 255, 0.4); box-shadow: 0 18px 42px -24px rgba(74, 144, 255, 0.7); transform: none; }
+main .faq details {
+  margin-bottom: 12px; padding: 0 1.45rem; border: 1px solid var(--suave-borda); border-radius: 16px;
+  background: var(--suave-fundo); box-shadow: var(--suave-brilho);
+}
+main .faq details:last-child { border-bottom: 1px solid var(--suave-borda); }
+main .faq details[open] { border-color: rgba(170, 210, 255, 0.35); }
+main .faq .answer { padding-left: 0; }
+main .cases, main .pillar, main .video, main .note, main .contact-list, main .facts, .cta-box { border-radius: 20px; }
+.avatar, .map, .fig, .serp, .win { border-radius: 20px; }
+.btn, .btn-primary, .btn-ghost, button.btn { border-radius: 999px; }
+main > .section .deliver > div, main > .section .index a, main > .section .faq details { box-shadow: var(--suave-brilho); }
+main > .section .deliver > div:hover, main > .section .index a:hover { box-shadow: 0 18px 42px -24px rgba(74, 144, 255, 0.7); }
+main .faq details, main > .section .faq details { border-radius: 16px !important; border: 1px solid var(--suave-borda) !important; }
+main .pillar, main .pillar.p1, main .pillar.p2, main .pillar.p3, main .pillar:first-child { border-radius: 20px !important; }
+
+/* ===== Azul mais vivo e luminoso nas seções (menos escuro) ===== */
+main > .section {
+  --bg: #0e3a70; --bg-2: #134a86; --bg-3: #185a9e; --line: #3a74b8; --line-soft: #2a5f9f;
+  --muted: #c6d6e6; --blue-bright: #d6e4f2;
+}
+main > .section:nth-of-type(odd) {
+  background:
+    radial-gradient(1100px 460px at 8% -10%, rgba(120, 190, 255, 0.30), transparent 62%),
+    radial-gradient(800px 420px at 100% 110%, rgba(61, 139, 255, 0.22), transparent 60%),
+    linear-gradient(180deg, #0f3d75 0%, #0b2f5c 100%);
+}
+main > .section:nth-of-type(even) {
+  background:
+    radial-gradient(1100px 480px at 92% -12%, rgba(140, 205, 255, 0.38), transparent 62%),
+    radial-gradient(800px 420px at 0% 112%, rgba(80, 160, 255, 0.24), transparent 60%),
+    linear-gradient(180deg, #1a5aa0 0%, #123f78 100%);
+}
+main > .section + .section { border-top: 1px solid rgba(180, 215, 255, 0.22); }
+main > .section .pillar, main > .section .cases, main > .section .deliver > div, main > .section .index a,
+main > .section .faq details, main > .section .caps li, main > .section .autos li {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
+  border-color: rgba(190, 220, 255, 0.28);
+}
+main > .section .form input, main > .section .form select, main > .section .form textarea { background: rgba(255, 255, 255, 0.10); border-color: rgba(190, 220, 255, 0.35); }
+.cta-band { background: radial-gradient(1200px 460px at 50% 0%, rgba(140, 205, 255, 0.35), transparent 66%), linear-gradient(180deg, #123f78 0%, #0b2a50 100%); }
+.cta-box { background: linear-gradient(135deg, rgba(60, 130, 215, 0.5), rgba(14, 58, 112, 0.7)); }
+.site-footer { background: linear-gradient(180deg, #0b2a50 0%, #081d38 100%); }
+main .faq details, main .faq details:last-child { padding-left: 1.45rem !important; padding-right: 1.45rem !important; }
+
+/* ===== Um só tom em todas as seções: azul médio com luz suave no alto (o preferido) ===== */
+main > .section, main > .section:nth-of-type(odd), main > .section:nth-of-type(even) {
+  --bg: #0d3a70; --bg-2: #114581; --bg-3: #16508f; --line: #35699f; --line-soft: #28578f;
+  --muted: #c3d3e4; --blue-bright: #d6e4f2;
+  background:
+    radial-gradient(1200px 480px at 50% -18%, rgba(140, 195, 255, 0.30), transparent 66%),
+    linear-gradient(180deg, #164c88 0%, #0e3b72 38%, #0b3366 100%);
+}
+main > .section + .section { border-top: 1px solid rgba(170, 210, 255, 0.16); }
+.cta-band { background: radial-gradient(1200px 460px at 50% 0%, rgba(140, 195, 255, 0.28), transparent 66%), linear-gradient(180deg, #0f3d75 0%, #0a2c56 100%); }
+.site-footer { background: linear-gradient(180deg, #0a2c56 0%, #071e3b 100%); }
+
+/* ===== Sem bordas nem contornos luminosos: cartões só com fundo translúcido ===== */
+main > .section .pillar, main > .section .cases, main > .section .deliver > div, main > .section .index a,
+main > .section .faq details, main > .section .caps li, main > .section .autos li, main > .section .video,
+main .faq details, main .contact-list, main .note, .cta-box {
+  border: 0 !important; box-shadow: none !important;
+}
+main > .section .pillar:hover, main > .section .deliver > div:hover, main > .section .index a:hover,
+main > .section .caps li:hover, main > .section .autos li:hover, main > .section .video:hover,
+main > .section .faq details[open] {
+  border: 0 !important; box-shadow: none !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+}
+main > .section + .section { border-top: 0; }
+
+/* ===== Emenda invisível entre as seções: topo e base com a mesma cor; a luz fica no meio ===== */
+main > .section, main > .section:nth-of-type(odd), main > .section:nth-of-type(even) {
+  background:
+    radial-gradient(1000px 420px at 72% 38%, rgba(140, 195, 255, 0.20), transparent 70%),
+    linear-gradient(180deg, #0e3b72 0%, #145088 50%, #0e3b72 100%);
+}
+.cta-band { background: radial-gradient(1100px 420px at 50% 40%, rgba(140, 195, 255, 0.22), transparent 68%), linear-gradient(180deg, #0e3b72 0%, #0a2c56 100%); }
+.site-footer { background: linear-gradient(180deg, #0a2c56 0%, #071e3b 100%); }
+
+/* ===== Só o azul escolhido (#0f3d73), liso, com uma luz quase imperceptível ===== */
+main > .section, main > .section:nth-of-type(odd), main > .section:nth-of-type(even) {
+  --bg: #0f3d73; --bg-2: #134880; --bg-3: #185490;
+  background:
+    radial-gradient(1000px 420px at 72% 40%, rgba(140, 195, 255, 0.07), transparent 70%),
+    #0f3d73;
+}
+.cta-band { background: radial-gradient(1100px 420px at 50% 40%, rgba(140, 195, 255, 0.10), transparent 68%), linear-gradient(180deg, #0f3d73 0%, #0a2c56 100%); }
+
+/* ===== Fundo azul mais escuro e quadros em vidro branco fosco ===== */
+main > .section, main > .section:nth-of-type(odd), main > .section:nth-of-type(even) {
+  --bg: #0a2b55; --bg-2: #0f3868; --bg-3: #144378; --line: #2c5a90; --line-soft: #21497c;
+  background:
+    radial-gradient(900px 420px at 82% 28%, rgba(70, 145, 255, 0.16), transparent 70%),
+    radial-gradient(720px 400px at 8% 82%, rgba(100, 170, 255, 0.10), transparent 70%),
+    #0a2b55;
+}
+.cta-band { background: radial-gradient(1000px 400px at 50% 40%, rgba(70, 145, 255, 0.16), transparent 68%), linear-gradient(180deg, #0a2b55 0%, #071f3f 100%); }
+.site-footer { background: linear-gradient(180deg, #071f3f 0%, #05162d 100%); }
+
+main > .section .pillar, main > .section .cases, main > .section .deliver > div, main > .section .index a,
+main > .section .faq details, main > .section .caps li, main > .section .autos li,
+main .contact-list, main .note, .cta-box {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+  -webkit-backdrop-filter: blur(16px) saturate(1.15); backdrop-filter: blur(16px) saturate(1.15);
+}
+main > .section .pillar:hover, main > .section .deliver > div:hover, main > .section .index a:hover,
+main > .section .caps li:hover, main > .section .autos li:hover, main > .section .faq details[open] {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.11));
+}
+.cta-box { background: linear-gradient(135deg, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.07)); }
+
+/* ===== Detalhes premium ===== */
+/* 1) Corrige as linhas soltas nas pontas da lista "Continue explorando" */
+main .index li, main .index li:last-child { border: 0 !important; }
+
+/* 2) Marca de título: barrinha em degradê azul antes de cada título de seção */
+.ledger-head h2::before {
+  content: ""; display: block; width: 38px; height: 3px; margin-bottom: 1.1rem; border-radius: 3px;
+  background: linear-gradient(90deg, #a6d2ff, #4a90ff);
+}
+
+/* 3) Textura sutil (grão) e luz de fundo, para o azul não parecer chapado */
+main > .section { overflow: hidden; }
+main > .section::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.045; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* 4) Linha fina que some nas pontas entre as seções (bem discreta) */
+main > .section + .section::before {
+  content: ""; position: absolute; top: 0; left: 8%; right: 8%; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(190, 220, 255, 0.22), transparent);
+}
+
+/* 5) Marcadores das listas: bolinha de luz azul em vez de cinza chapado */
+.checks li::before, .checks li::before {
+  background: radial-gradient(circle at 35% 30%, #e3f1ff, #6fb3ff 70%) !important;
+  box-shadow: 0 0 10px rgba(110, 175, 255, 0.55) !important; border: 0 !important;
+}
+.checks li, .checks li:last-child { border-color: rgba(190, 220, 255, 0.14); }
+
+/* 6) Movimento suave nos cartões */
+main > .section .pillar, main > .section .deliver > div, main > .section .index a, main > .section .caps li, main > .section .autos li, main > .section .faq details {
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.4s ease;
+}
+main > .section .pillar:hover, main > .section .deliver > div:hover, main > .section .index a:hover, main > .section .caps li:hover, main > .section .autos li:hover { transform: translateY(-2px); }
+
+/* 7) Ilustrações claras flutuando sobre o azul, com respiro do texto */
+.stack-fig { gap: 1.9rem; }
+.stack-fig > .fig, .stack-fig > .only-desktop { margin-top: 0.4rem; }
+main > .section .fig { border: 0; box-shadow: 0 40px 90px -42px rgba(0, 10, 30, 0.7); border-radius: 24px; }
+
+/* 8) Perguntas frequentes: ambiente próprio (azul com luz índigo) e perguntas numeradas */
+main > .section:has(.faq) {
+  background:
+    radial-gradient(900px 440px at 14% 18%, rgba(125, 115, 255, 0.17), transparent 70%),
+    radial-gradient(760px 420px at 92% 92%, rgba(70, 145, 255, 0.13), transparent 70%),
+    #0a2b55;
+}
+main .faq { counter-reset: pergunta; }
+main .faq details { counter-increment: pergunta; }
+main .faq summary { padding-left: 3.1rem; position: relative; }
+main .faq summary::before {
+  content: counter(pergunta, decimal-leading-zero); position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  font-family: var(--ui); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; color: #9cc8ff;
+}
+main .faq details[open] summary::before { color: #ffffff; }
+
+/* 9) Continue explorando: ambiente próprio (azul com luz ciano) e seta que desliza */
+main > .section:has(.index) {
+  background:
+    radial-gradient(900px 440px at 84% 24%, rgba(70, 205, 235, 0.15), transparent 70%),
+    radial-gradient(760px 420px at 6% 90%, rgba(80, 150, 255, 0.12), transparent 70%),
+    #0a2b55;
+}
+main .index a { position: relative; }
+main .index a .tag::after { content: "→"; margin-left: 0.7rem; display: inline-block; transition: transform 0.35s ease; opacity: 0.8; }
+main .index a:hover .tag::after { transform: translateX(5px); opacity: 1; }
+
+/* 10) Pequenos acabamentos */
+::selection { background: rgba(120, 185, 255, 0.4); color: #fff; }
+html { scrollbar-color: #2f5f99 #081f3f; scrollbar-width: thin; }
+:focus-visible { outline: 2px solid #8cc3ff; outline-offset: 3px; border-radius: 8px; }
+main > .section .btn-primary { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+main > .section .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(110, 170, 255, 0.8); }
+
+/* ===== Como funciona: passos em vidro fosco com selos numerados e fio de ligação ===== */
+main > .section .steps { position: relative; display: grid; gap: 14px; counter-reset: passo; }
+main > .section .steps::before {
+  content: ""; position: absolute; z-index: 0; left: calc(1.5rem + 1.7rem - 1px); top: 2.6rem; bottom: 2.6rem; width: 2px; border-radius: 2px;
+  background: linear-gradient(180deg, rgba(160, 208, 255, 0.6), rgba(160, 208, 255, 0.08));
+}
+main > .section .steps li {
+  position: relative; z-index: 1; display: grid; grid-template-columns: 3.4rem 1fr; column-gap: 1.3rem; align-items: center;
+  margin: 0; padding: 1.3rem 1.5rem; border: 0; border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.4s ease;
+}
+main > .section .steps li:hover { transform: translateY(-2px); background: linear-gradient(180deg, rgba(255, 255, 255, 0.19), rgba(255, 255, 255, 0.10)); }
+main > .section .steps li::after { content: none !important; display: none; }
+main > .section .steps li::before {
+  counter-increment: passo; content: counter(passo, decimal-leading-zero); grid-row: 1 / span 2;
+  display: grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: 50%;
+  font-family: var(--ui); font-weight: 800; font-size: 1.05rem; letter-spacing: 0.02em; color: #0a2b55;
+  background: linear-gradient(135deg, #e6f3ff, #7db9ff);
+  box-shadow: 0 10px 26px -10px rgba(110, 175, 255, 0.8), 0 0 0 7px rgba(150, 200, 255, 0.10);
+}
+main > .section .steps li > * { grid-column: 2; }
+main > .section .steps h3 { font-size: 1.2rem; letter-spacing: -0.01em; }
+main > .section .steps p { margin-top: 0.2rem; }
+@media (max-width: 40rem) {
+  main > .section .steps::before { left: calc(1rem + 1.4rem - 1px); top: 2.3rem; bottom: 2.3rem; }
+  main > .section .steps li { grid-template-columns: 2.8rem 1fr; column-gap: 1rem; padding: 1.1rem 1rem; }
+  main > .section .steps li::before { width: 2.8rem; height: 2.8rem; font-size: 0.95rem; }
+}
+
+/* ===== Movimento fluido (só para quem não pediu menos movimento) ===== */
+@property --gx1 { syntax: "<percentage>"; inherits: false; initial-value: 82%; }
+@property --gy1 { syntax: "<percentage>"; inherits: false; initial-value: 28%; }
+@property --gx2 { syntax: "<percentage>"; inherits: false; initial-value: 8%; }
+@property --gy2 { syntax: "<percentage>"; inherits: false; initial-value: 82%; }
+
+/* luzes de fundo ligadas às variáveis, para poderem se mover */
+main > .section, main > .section:nth-of-type(odd), main > .section:nth-of-type(even) {
+  background:
+    radial-gradient(900px 420px at var(--gx1) var(--gy1), rgba(70, 145, 255, 0.16), transparent 70%),
+    radial-gradient(720px 400px at var(--gx2) var(--gy2), rgba(100, 170, 255, 0.10), transparent 70%),
+    #0a2b55;
+}
+main > .section:has(.faq) {
+  background:
+    radial-gradient(900px 440px at var(--gx2) var(--gy1), rgba(125, 115, 255, 0.17), transparent 70%),
+    radial-gradient(760px 420px at var(--gx1) var(--gy2), rgba(70, 145, 255, 0.13), transparent 70%),
+    #0a2b55;
+}
+main > .section:has(.index) {
+  background:
+    radial-gradient(900px 440px at var(--gx1) var(--gy1), rgba(70, 205, 235, 0.15), transparent 70%),
+    radial-gradient(760px 420px at var(--gx2) var(--gy2), rgba(80, 150, 255, 0.12), transparent 70%),
+    #0a2b55;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  @keyframes deriva {
+    from { --gx1: 76%; --gy1: 22%; --gx2: 6%; --gy2: 88%; }
+    to   { --gx1: 94%; --gy1: 44%; --gx2: 20%; --gy2: 66%; }
+  }
+  main > .section.is-live { animation: deriva 20s ease-in-out infinite alternate; }
+  main > .section:nth-of-type(3n+1).is-live { animation-delay: -5s; }
+  main > .section:nth-of-type(3n+2).is-live { animation-delay: -11s; }
+
+  /* aparecer ao rolar: sobe e assenta, com atraso entre irmãos */
+  @keyframes surge { from { opacity: 0; transform: translateY(30px) scale(0.985); } }
+  .reveal { opacity: 0; }
+  .reveal.in { opacity: 1; animation: surge 0.95s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; animation-delay: var(--d, 0s); }
+  .steps.reveal, .steps.reveal.in { opacity: 1; animation: none; }
+
+  /* barrinha do título cresce; fio dos passos se desenha */
+  @keyframes barra { from { width: 0; opacity: 0; } }
+  .ledger-head.in h2::before { animation: barra 0.9s 0.2s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  main > .section .steps::before { transform-origin: top; transform: scaleY(0); }
+  main > .section .steps.in::before { transform: scaleY(1); transition: transform 1.5s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s; }
+
+  /* selos dos passos respiram devagar */
+  @keyframes pulsa {
+    0%, 100% { box-shadow: 0 10px 26px -10px rgba(110, 175, 255, 0.8), 0 0 0 7px rgba(150, 200, 255, 0.10); }
+    50% { box-shadow: 0 10px 30px -8px rgba(110, 175, 255, 0.95), 0 0 0 12px rgba(150, 200, 255, 0.04); }
+  }
+  main > .section .steps li::before { animation: pulsa 3.6s ease-in-out infinite; }
+  main > .section .steps li:nth-child(2)::before { animation-delay: 0.5s; }
+  main > .section .steps li:nth-child(3)::before { animation-delay: 1s; }
+  main > .section .steps li:nth-child(4)::before { animation-delay: 1.5s; }
+  main > .section .steps li:nth-child(5)::before { animation-delay: 2s; }
+
+  /* resposta das perguntas abre suave */
+  @keyframes abre { from { opacity: 0; transform: translateY(-8px); } }
+  main .faq details[open] .answer { animation: abre 0.45s cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+  /* abertura: texto entra em sequência; ilustração flutua */
+  .hero .eyebrow, .hero h1, .hero .lead, .hero .btn-row, .hero .fine,
+  .page-hero .crumbs, .page-hero h1, .page-hero .lead, .page-hero .pillar-flag, .page-hero .btn-row, .page-hero .updated {
+    animation: surge 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  }
+  .hero h1, .page-hero h1 { animation-delay: 0.08s; }
+  .hero .lead, .page-hero .lead { animation-delay: 0.22s; }
+  .hero .btn-row, .page-hero .btn-row, .page-hero .pillar-flag { animation-delay: 0.36s; }
+  .hero .fine, .page-hero .updated { animation-delay: 0.48s; }
+  @keyframes flutua { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  .hero .serp, .page-hero .fig { animation: flutua 9s ease-in-out 1.2s infinite; }
+}
+
+/* ===== Versão leve do movimento: só transform e opacidade (rodam na placa de vídeo) ===== */
+/* 1) sem desfoque de fundo nos cartões (era o item mais pesado ao rolar) */
+main > .section .pillar, main > .section .cases, main > .section .deliver > div, main > .section .index a,
+main > .section .faq details, main > .section .caps li, main > .section .autos li, main > .section .steps li,
+main .contact-list, main .note, .cta-box {
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+/* 2) luz de fundo: uma camada que só desliza (transform), no lugar de redesenhar o degradê; sem grão */
+main > .section::after {
+  inset: -12% -8%; opacity: 1; mix-blend-mode: normal; background-repeat: no-repeat;
+  background-image:
+    radial-gradient(520px 320px at 78% 30%, rgba(90, 160, 255, 0.14), transparent 70%),
+    radial-gradient(460px 300px at 14% 78%, rgba(120, 190, 255, 0.09), transparent 70%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes desliza { from { transform: translate3d(-3%, 2%, 0); } to { transform: translate3d(3%, -2%, 0); } }
+  main > .section.is-live { animation: none !important; }
+  main > .section.is-live::after { animation: desliza 22s ease-in-out infinite alternate; will-change: transform; }
+  /* 3) selos sem animar sombra (repintava a cada quadro) */
+  main > .section .steps li::before { animation: none; }
+  .hero .serp, .page-hero .fig { will-change: transform; }
+}
+@media (max-width: 40rem) {
+  main > .section.is-live::after, .hero .serp, .page-hero .fig { animation: none !important; }
+}
+
+/* ===== Cartões de contato e de fatos: respiro interno e sem linhas soltas nas pontas ===== */
+main .contact-list, main .facts {
+  padding: 0.4rem 1.7rem !important; border: 0 !important; border-radius: 20px; box-shadow: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+}
+main .contact-list > div, main .facts > div {
+  padding: 1.15rem 0; border-top: 1px solid rgba(190, 220, 255, 0.13) !important; border-bottom: 0 !important;
+}
+main .contact-list > div:first-child, main .facts > div:first-child { border-top: 0 !important; }
+main .contact-list > div:last-child, main .facts > div:last-child { border-bottom: 0 !important; }
+@media (max-width: 40rem) { main .contact-list, main .facts { padding: 0.3rem 1.3rem !important; } }
+
+/* Home: H1 mais longo (mesma fonte, peso e cor), com tamanho e largura ajustados */
+.hero h1 { font-size: clamp(2rem, 4.3vw, 3.5rem); max-width: 19ch; line-height: 1.06; }
+/* H2 dentro da seção "Para quem é" com o mesmo visual do antigo H3 */
+h2.h3-look { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; font-stretch: 100%; }

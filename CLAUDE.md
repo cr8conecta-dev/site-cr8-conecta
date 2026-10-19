@@ -46,7 +46,17 @@ _fonte/gerar.py        gera tudo: python3 _fonte/gerar.py
 - Regras de design (espaçamento, tipografia, contraste, botões, metas de altura das páginas, checklist): ver `GUIA-VISUAL.md`. Prints de referência ficam em `referencias/`, que não vai para o GitHub nem para o site.
 - WhatsApp e telefone: (41) 99525-7590 (wa.me/5541995257590). Google Tag Manager: GTM-W52QP5QB.
 
+## Estado da publicação (atualizado em 15/10/2026)
+
+- O site novo está NO AR em cr8conecta.com.br. Foi enviado por zip pelo Gerenciador de Arquivos da Hostinger (extraído em `public_html`, sem apagar nada). A Hostinger NÃO está ligada a este repositório: `git push` atualiza só o GitHub, não o domínio.
+- `public_html` também guarda outras ferramentas no ar (crm, link, marketing, geradordevendas, cardenuto, diagnosticoimobiliarias, propostapersonalizada, southwindprovisorio, vendor). Nunca esvaziar essa pasta.
+- No servidor há só um `.htaccess` MÍNIMO (enviado em 19/10/2026) com o redirecionamento 301 de www para sem www; o `.htaccess` completo do repositório NÃO foi enviado (afetaria as outras ferramentas). Para desfazer o redirecionamento, renomear/remover esse arquivo no Gerenciador de Arquivos. Para atualizar o site: gerar o zip sem `_fonte/`, `.md`, `.htaccess`, `.gitignore`, enviar e extrair por cima com "overwrite".
+- Backups da home antiga: pasta e zip `Documentos\backup-cr8conecta-ao-vivo-2026-10-15`, branch `backup-site-antigo-2026-10-15` no GitHub, tag `backup-antes-ux-2026-10-15`, e backups diários de arquivos da Hostinger.
+- Cuidado: o repositório privado `cr8-site` publicava o site antigo por FTP (existe `.ftp-deploy-sync-state.json` no servidor). Se ele rodar de novo, pode reenviar a home antiga por cima.
+
 ## Pendências conhecidas
+
+- Mudanças visuais só no site local, NÃO publicadas (aprovação do Carlos pendente): capa clara (nude/branco) em todas as páginas e resto do site em azul com gradiente e brilho suave (a pedido; foge da regra "sem brilhos, gradientes decorativos" e de "seções alternam escuras e claras"), fundo escuro mais fundo (#0a1c2e), texto corrido em Archivo (sem serifa), títulos mais leves, capas claras em Sobre e Contato, home sem o cartão escuro dos pilares. Ilustrações e cartões das capas também ficaram claros. O bloco "CAPA CLARA em todas as páginas" no fim de `assets/css/style.css` define a capa clara e o azul com brilho; apagar esse bloco volta ao azul liso.
 
 - Melhoria de UX em andamento (tudo local, NADA publicado): home reordenada, CSS sem brilho/degradê, cores de contraste corrigidas, página do CRM enxuta (conferidas). Páginas de serviço (Perfil no Google, Criação de Sites, Redes Sociais, Tráfego, Automação): ilustrações escondidas no celular e faixa de convite no meio, geradas mas NÃO conferidas no celular, no desktop nem no contraste. Conferir tudo antes de qualquer "pode publicar".
 - Propostas para o CRM ainda sem decisão: compactar listas, tirar a seção "Uma plataforma no lugar de várias ferramentas", links compactos em "Continue explorando".
