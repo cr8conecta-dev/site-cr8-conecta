@@ -681,7 +681,7 @@ def build_contact():
 <div><dt>WhatsApp</dt><dd><a href="{WA_URL}" data-cta="whatsapp" target="_blank" rel="noopener">{PHONE}</a></dd></div>
 <div><dt>E-mail</dt><dd><a href="mailto:{EMAIL}" data-cta="email">{EMAIL}</a></dd></div>
 <div><dt>Instagram</dt><dd><a href="{INSTAGRAM}" target="_blank" rel="noopener">@cr8conecta</a></dd></div>
-<div><dt>Onde estamos</dt><dd>Curitiba, PR. Atendimento em todo o Brasil.</dd></div>
+<div><dt>Onde estamos</dt><dd>Curitiba, PR. Atendimento em Curitiba e região metropolitana, e também em outros estados.</dd></div>
 <div><dt>Retorno</dt><dd>Em até 24 horas</dd></div>
 </dl>"""
     form = f"""<form class="form" id="contact-form" data-whatsapp="{WHATSAPP}">
