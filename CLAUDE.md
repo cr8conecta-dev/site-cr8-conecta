@@ -4,10 +4,11 @@ Site estático da CR8 Conecta, agência de marketing e vendas de Curitiba que tr
 
 ## Como o deploy funciona
 
-- Este repositório É o site: a raiz do repositório vai inteira para a pasta `public_html` da Hostinger.
-- A Hostinger está ligada ao GitHub com implantação automática: todo `git push` na branch `main` atualiza o site no ar em poucos segundos.
+- Este repositório É o site. Todo `git push` na branch `main` dispara o GitHub Actions (`.github/workflows/deploy.yml`), que roda `python3 _fonte/gerar.py` e envia por FTPS para a Hostinger em cerca de 1 minuto. Não precisa mais de zip.
+- A conta FTP `u118620461.deploy` começa uma pasta abaixo do docroot, por isso o workflow usa `server-dir: ../`. Não mudar sem testar.
+- O envio nunca apaga nada (`dangerous-clean-slate: false`; estado em `.ftp-deploy-cr8-site-novo.json`) e não envia `_fonte/`, `.md`, `.htaccess`, `.git*`, `referencias/`. As outras ferramentas em `public_html` ficam intactas.
 - Por isso: **só faça push depois de gerar e conferir**. Antes de qualquer push, mostre ao Carlos o que mudou e peça um "pode publicar".
-- Arquivos internos (`_fonte/`, arquivos `.md`, `.git`) ficam bloqueados para o público pelo `.htaccess`.
+- Teste sem enviar: Actions > Publicar > Run workflow (dry_run = true).
 
 ## Estrutura
 
@@ -46,13 +47,14 @@ _fonte/gerar.py        gera tudo: python3 _fonte/gerar.py
 - Regras de design (espaçamento, tipografia, contraste, botões, metas de altura das páginas, checklist): ver `GUIA-VISUAL.md`. Prints de referência ficam em `referencias/`, que não vai para o GitHub nem para o site.
 - WhatsApp e telefone: (41) 99525-7590 (wa.me/5541995257590). Google Tag Manager: GTM-W52QP5QB.
 
-## Estado da publicação (atualizado em 15/10/2026)
+## Estado da publicação (atualizado em 19/10/2026)
 
-- O site novo está NO AR em cr8conecta.com.br. Foi enviado por zip pelo Gerenciador de Arquivos da Hostinger (extraído em `public_html`, sem apagar nada). A Hostinger NÃO está ligada a este repositório: `git push` atualiza só o GitHub, não o domínio.
-- `public_html` também guarda outras ferramentas no ar (crm, link, marketing, geradordevendas, cardenuto, diagnosticoimobiliarias, propostapersonalizada, southwindprovisorio, vendor). Nunca esvaziar essa pasta.
-- No servidor há só um `.htaccess` MÍNIMO (enviado em 19/10/2026) com o redirecionamento 301 de www para sem www; o `.htaccess` completo do repositório NÃO foi enviado (afetaria as outras ferramentas). Para desfazer o redirecionamento, renomear/remover esse arquivo no Gerenciador de Arquivos. Para atualizar o site: gerar o zip sem `_fonte/`, `.md`, `.htaccess`, `.gitignore`, enviar e extrair por cima com "overwrite".
-- Backups da home antiga: pasta e zip `Documentos\backup-cr8conecta-ao-vivo-2026-10-15`, branch `backup-site-antigo-2026-10-15` no GitHub, tag `backup-antes-ux-2026-10-15`, e backups diários de arquivos da Hostinger.
-- Cuidado: o repositório privado `cr8-site` publicava o site antigo por FTP (existe `.ftp-deploy-sync-state.json` no servidor). Se ele rodar de novo, pode reenviar a home antiga por cima.
+- O site novo está NO AR em cr8conecta.com.br, publicado pelo deploy automático (ver acima).
+- `public_html` também guarda outras ferramentas no ar (crm, link, marketing, geradordevendas, cardenuto, diagnosticoimobiliarias, propostapersonalizada, southwindprovisorio, vendor). Nunca esvaziar essa pasta. O WordPress em `southwindprovisorio` já respondia 404 na raiz, não é causado pelo deploy.
+- No servidor há só um `.htaccess` MÍNIMO com o redirecionamento 301 de www para sem www; o `.htaccess` completo do repositório NÃO é enviado (afetaria as outras ferramentas).
+- Sobra uma pasta antiga `public_html/public_html/` (cópia criada por testes do deploy) que está acessível em /public_html/; deve ser apagada pelo Carlos no Gerenciador de Arquivos.
+- Backups da home antiga: pasta e zip `Documentosackup-cr8conecta-ao-vivo-2026-10-15`, branch `backup-site-antigo-2026-10-15`, tag `backup-antes-ux-2026-10-15`, backups diários da Hostinger.
+- Cuidado: o repositório privado `cr8-site` publicava o site antigo por FTP. Se ele rodar de novo, pode reenviar a home antiga por cima; desativar o workflow dele.
 
 ## Pendências conhecidas
 
