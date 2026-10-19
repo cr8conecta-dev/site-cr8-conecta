@@ -6,10 +6,8 @@ name: Publicar no cr8conecta.com.br
 # Para testar sem mudar nada no servidor: Actions > Publicar > Run workflow > dry_run = true.
 
 on:
-  # push automático DESLIGADO por enquanto (primeiro só teste manual).
-  # Para ligar depois da aprovação, descomente as 2 linhas abaixo:
-  # push:
-  #   branches: [main]
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       dry_run:
