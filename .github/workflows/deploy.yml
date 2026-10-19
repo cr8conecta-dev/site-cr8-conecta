@@ -37,7 +37,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./
-          server-dir: public_html/
+          server-dir: ./   # a conta FTP já começa dentro de public_html
           state-name: .ftp-deploy-cr8-site-novo.json
           dangerous-clean-slate: false
           dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
