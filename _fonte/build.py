@@ -39,6 +39,18 @@ def plain(s):
     return re.sub(r"<[^>]+>", "", s)
 
 
+
+def _versao(p):
+    """?v=<hash> em css/js: cada mudança do arquivo força navegador e CDN a baixar de novo."""
+    import hashlib, os
+    if not p.endswith((".css", ".js")):
+        return ""
+    f = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", p)
+    try:
+        return "?v=" + hashlib.md5(open(f, "rb").read().replace(b"\r\n", b"\n")).hexdigest()[:8]
+    except OSError:
+        return ""
+
 class Ctx:
     def __init__(self, slug):
         self.slug = slug
@@ -49,7 +61,7 @@ class Ctx:
         return "./" if self.depth == 0 else "../"
 
     def asset(self, p):
-        return self.root + "assets/" + p
+        return self.root + "assets/" + p + _versao(p)
 
     def link(self, slug):
         if slug == "":
