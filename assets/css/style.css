@@ -1667,3 +1667,10 @@ main > .section .grad, .cta-box .grad, .site-footer .grad { background-image: li
 .hero .btn-primary, .page-hero .btn-primary { background: linear-gradient(100deg, #1b4aa0, #2a74dc); color: #fff; box-shadow: 0 10px 24px -12px rgba(29,79,168,.7); }
 .hero .btn-primary:hover, .page-hero .btn-primary:hover { background: linear-gradient(100deg, #17408c, #2468c8); color: #fff; }
 .page-hero.hero-light .btn-primary { background: linear-gradient(100deg, #1b4aa0, #2a74dc); color: #fff; }
+
+
+/* ===== Celular do mockup do site: aparelho inteiro, com proporção real ===== */
+.dv-phone { aspect-ratio: 9 / 18.4; display: flex; bottom: 0; width: 26%; }
+.dv-phone .sm { flex: 1; padding-bottom: 0; }
+.dv-phone .sm::after { content: ""; position: absolute; left: 50%; bottom: .7em; width: 34%; height: .28em; border-radius: 999px; background: #0d2743; opacity: .3; transform: translateX(-50%); }
+.dv-phone .sm-wa { bottom: 2em; }

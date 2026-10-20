@@ -100,7 +100,7 @@ def devices():
 <div class="dv-phone"><div class="dv-notch"></div><div class="sm">
 <div class="sm-nav"><span class="sx-logo"><i></i>Sua Empresa</span><span class="sm-burger"><u></u><u></u><u></u></span></div>
 <div class="sm-hero"><small>Curitiba e região</small><strong>Serviço de confiança para a sua empresa</strong><span class="sx-btn">Pedir orçamento</span></div>
-<div class="sm-card"><i></i><b>Serviço A</b><u></u></div><div class="sm-card"><i></i><b>Serviço B</b><u></u></div>
+<div class="sm-card"><i></i><b>Serviço A</b><u></u></div><div class="sm-card"><i></i><b>Serviço B</b><u></u></div><div class="sm-card"><i></i><b>Serviço C</b><u></u></div>
 <span class="sm-wa">WhatsApp</span></div></div></div>"""
     return '<figure class="fig f-devices wide" role="img" aria-label="Ilustração de um site institucional aberto em um notebook, com menu, destaque, serviços e avaliações, e a mesma página adaptada ao celular, com botão de WhatsApp.">%s%s</figure>' % (inner, _cap("o mesmo site no computador e no celular, com uma página clara para cada serviço."))
 
