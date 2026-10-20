@@ -42,6 +42,8 @@ _fonte/gerar.py        gera tudo: python3 _fonte/gerar.py
 - Nas páginas de Perfil da Empresa no Google e de Criação de Sites, deixar claro que a CR8 trabalha para o site e a empresa aparecerem também nas respostas de inteligência artificial, de forma orgânica.
 - Não usar travessão (—) nos textos.
 - Não inventar números, depoimentos ou clientes. Só dados com fonte verificável; se não tiver fonte, não usar.
+- NUNCA usar laranja nem violeta/roxo no site (pedido do Carlos). Destaques e brilhos só em tons de azul.
+- Títulos (h1/h2): a parte final sai em gradiente azul (classe `.grad`, aplicada sozinha por `destaque()` em `_fonte/build.py`; pedido do Carlos). Botões principais da capa também em gradiente azul.
 - Paleta oficial: marinho #0d2743, azul acinzentado #8c9eac, nude #dad5cf, branco #ffffff. Seções alternam escuras e claras.
 - Visual sóbrio: o Carlos não quer cara de site feito por IA. Evitar brilhos, formas flutuando, efeitos de aparecer ao rolar em todo bloco, cartões de vidro com sombra, gradientes decorativos. Preferir fotos reais e listas limpas.
 - Regras de design (espaçamento, tipografia, contraste, botões, metas de altura das páginas, checklist): ver `GUIA-VISUAL.md`. Prints de referência ficam em `referencias/`, que não vai para o GitHub nem para o site.
@@ -53,7 +55,7 @@ _fonte/gerar.py        gera tudo: python3 _fonte/gerar.py
 - `public_html` também guarda outras ferramentas no ar (crm, link, marketing, geradordevendas, cardenuto, diagnosticoimobiliarias, propostapersonalizada, southwindprovisorio, vendor). Nunca esvaziar essa pasta. O WordPress em `southwindprovisorio` já respondia 404 na raiz, não é causado pelo deploy.
 - No servidor há só um `.htaccess` MÍNIMO com o redirecionamento 301 de www para sem www; o `.htaccess` completo do repositório NÃO é enviado (afetaria as outras ferramentas).
 - Sobra uma pasta antiga `public_html/public_html/` (cópia criada por testes do deploy) que está acessível em /public_html/; deve ser apagada pelo Carlos no Gerenciador de Arquivos.
-- Backups da home antiga: pasta e zip `Documentosackup-cr8conecta-ao-vivo-2026-10-15`, branch `backup-site-antigo-2026-10-15`, tag `backup-antes-ux-2026-10-15`, backups diários da Hostinger.
+- Backups da home antiga: pasta e zip `Documentos\backup-cr8conecta-ao-vivo-2026-10-15`, branch `backup-site-antigo-2026-10-15`, tag `backup-antes-ux-2026-10-15`, backups diários da Hostinger.
 - Cuidado: o repositório privado `cr8-site` publicava o site antigo por FTP. Se ele rodar de novo, pode reenviar a home antiga por cima; desativar o workflow dele.
 
 ## Pendências conhecidas

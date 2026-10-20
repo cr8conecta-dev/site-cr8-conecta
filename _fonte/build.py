@@ -345,7 +345,32 @@ def tail(c):
 """
 
 
+def destaque(html_text):
+    """Títulos (h1/h2) com a parte final em gradiente azul: depois dos dois pontos, depois da última vírgula ou nas últimas palavras."""
+    import re
+    corpo, sep, resto = html_text.partition("<footer")
+
+    def corta(m):
+        abre, txt, fecha = m.group(1), m.group(2), m.group(3)
+        if "<" in txt or "&" in txt and ";" not in txt:
+            return m.group(0)
+        for marca in (": ", ", "):
+            i = txt.rfind(marca)
+            if 0 < i < len(txt) - 3:
+                return '%s%s%s<span class="grad">%s</span>%s' % (abre, txt[:i + len(marca)], "", txt[i + len(marca):], fecha)
+        palavras = txt.split(" ")
+        n = len(palavras)
+        if n < 2:
+            return m.group(0)
+        k = max(1, round(n / 2.5))
+        return '%s%s <span class="grad">%s</span>%s' % (abre, " ".join(palavras[:-k]), " ".join(palavras[-k:]), fecha)
+
+    corpo = re.sub(r"(<h[12](?: [^>]*)?>)([^<]+)(</h[12]>)", corta, corpo)
+    return corpo + sep + resto
+
+
 def write_page(slug, html_text):
+    html_text = destaque(html_text)
     folder = OUT if slug == "" else os.path.join(OUT, slug)
     os.makedirs(folder, exist_ok=True)
     with open(os.path.join(folder, "index.html"), "w", encoding="utf-8") as f:
@@ -437,12 +462,17 @@ def build_home():
     body = f"""<main id="conteudo">
 <section class="hero"><div class="wrap hero-grid">
 <div>
-<h1>Agência de marketing e vendas em Curitiba: quem aparece mais, vende mais</h1>
+<h1>Agência de marketing e vendas em Curitiba: <span class="grad">quem aparece mais, vende mais</span></h1>
 <p class="lead">Agência de marketing e vendas de Curitiba. Colocamos sua empresa na frente de quem já procura o que você faz e organizamos o comercial para fechar mais.</p>
 <div class="btn-row"><a class="btn btn-primary" href="{WA_URL}" data-cta="whatsapp" target="_blank" rel="noopener">Pedir diagnóstico gratuito</a><a class="btn btn-ghost" href="{c.link(PAR['slug'])}">Conhecer o Método PAR 360</a></div>
 <p class="fine">Diagnóstico gratuito, sem compromisso. Retorno em até 24 horas.</p>
 </div>
-{serp_html()}
+<div class="hero-stage"><span class="ghost g1" aria-hidden="true"></span><span class="ghost g2" aria-hidden="true"></span>{serp_html()}</div>
+</div>
+<div class="wrap hero-facts" aria-label="A CR8 Conecta em números">
+<div><b>2021</b><span>fundada em Curitiba por Carlos da Silva</span></div>
+<div><b>3</b><span>pilares no Método PAR 360</span></div>
+<div><b>6</b><span>serviços, do Google ao CRM</span></div>
 </div></section>
 
 {marquee_html()}
@@ -736,7 +766,7 @@ def build_404():
 </div></section></main>"""
     text = head(a, title, desc, [org_node()], noindex=True) + header(a) + body + footer(a) + tail(a)
     with open(os.path.join(OUT, "404.html"), "w", encoding="utf-8") as f:
-        f.write(text)
+        f.write(destaque(text))
 
 
 def build_files():
