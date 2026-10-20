@@ -10,8 +10,8 @@ PHONE_E164 = "+5541995257590"
 EMAIL = "contato@cr8conecta.com.br"
 INSTAGRAM = "https://www.instagram.com/cr8conecta/"
 GTM_ID = "GTM-W52QP5QB"
-MODIFIED = "2026-10-13"
-MODIFIED_HUMAN = "13 de outubro de 2026"
+MODIFIED = "2026-10-20"
+MODIFIED_HUMAN = "20 de outubro de 2026"
 OG_IMAGE = "/assets/img/og-cr8-conecta.jpg"
 
 PILLARS = {
