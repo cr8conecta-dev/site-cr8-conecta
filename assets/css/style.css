@@ -1572,3 +1572,55 @@ h2.h3-look { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; line
 .wa-float:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 @media (max-width: 640px) { .wa-float { width: 3.3rem; height: 3.3rem; } }
 @media print { .wa-float { display: none; } }
+
+/* ===== PAINÉIS ESTILO DASHBOARD (ilustrações escuras com barra de janela) ===== */
+.fig, .serp {
+  --bg: #0b1c34; --bg-2: #10284a; --bg-3: #14305a; --line: rgba(255,255,255,.14); --line-soft: rgba(255,255,255,.09);
+  --text: #dfe8f3; --muted: #9db2c8; --head: #ffffff; --card-top: #14305a; --blue: #7fb4ff; --blue-bright: #cfe3ff;
+  --acc: #38c7f2; --acc2: #8b8cf8;
+  position: relative; color: var(--text);
+  background: linear-gradient(165deg, #12294b 0%, #0a1b33 70%) !important;
+  border: 1px solid rgba(255,255,255,.1) !important; border-radius: 20px !important;
+  box-shadow: 0 34px 60px -34px rgba(8,24,48,.65), inset 0 1px 0 rgba(255,255,255,.07) !important;
+  padding-top: 3.3rem !important; overflow: hidden;
+}
+.fig::before, .serp::before {
+  content: attr(data-title); position: absolute; left: 0; right: 0; top: 0; height: 2.5rem;
+  display: flex; align-items: center; padding: 0 1rem 0 4.4rem;
+  font: 600 .74rem/1 var(--ui, inherit); letter-spacing: .02em; color: #b9cbe0;
+  background: rgba(255,255,255,.035); border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.fig::after, .serp::after {
+  content: ""; position: absolute; left: 1rem; top: 1.05rem; width: .5rem; height: .5rem; border-radius: 50%;
+  background: #ff6b6b; box-shadow: .85rem 0 0 #ffc24b, 1.7rem 0 0 #3ddc97; pointer-events: none;
+}
+.fig-cap { color: var(--muted) !important; }
+.fig .btnx, .fig .btnx.sm { background: linear-gradient(135deg, var(--acc), var(--acc2)) !important; color: #06182e !important; font-weight: 700; }
+.fig .kc, .fig .kc.won { background: rgba(255,255,255,.06) !important; border-color: rgba(255,255,255,.1) !important; }
+.fig .kcol { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.08); }
+.fig .kcol.won { border-color: rgba(61,220,151,.45); } .fig .kcol.won .kc { background: rgba(61,220,151,.1) !important; }
+.fig .t5, .fig .lead-chip, .fig .ib-row.sel, .fig .st { background: rgba(255,255,255,.07); }
+.fig .bubble.them { background: rgba(255,255,255,.1); color: #e8eef6; }
+.fig .bubble.us { background: linear-gradient(135deg, #1d6fd1, #5b5fe0) !important; }
+.fig .ai-q { background: #dfe8f3; }
+.fig .mt-k, .fig .mt-chart { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.09); box-shadow: none; }
+.fig .mt-bars i { background: linear-gradient(180deg, var(--acc), #3b64d8); }
+.fig .mt-k b { color: #fff !important; }
+.fig .node { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
+/* mockups "de produto" (celular, notebook, ficha do Google, página) continuam claros dentro do painel */
+.fig .gb, .fig .gb *, .fig .dv-screen, .fig .dv-screen *, .fig .dv-phone .sm, .fig .dv-phone .sm *, .fig .win, .fig .win *, .fig .ig-grid {
+  --bg: #ffffff; --bg-2: #f4f2ef; --bg-3: #ebe7e2; --line: #cfc9c2; --line-soft: #e0dbd5;
+  --text: #0d2743; --muted: #4e6277; --head: #0d2743; --blue: #3d5a7f; --blue-bright: #0d2743;
+}
+.f-trafego::before { content: "Campanhas · Google Ads e Meta Ads"; }
+.f-crm::before { content: "CRM CR8 Conecta · Funil de vendas"; }
+.f-ia::before { content: "Atendimento por IA · WhatsApp"; }
+.f-loop::before { content: "Método PAR 360 · Ciclo"; }
+.f-redes::before { content: "Redes sociais · Perfil"; }
+.f-gbp::before { content: "Perfil da Empresa no Google"; }
+.f-landing::before { content: "Página de captura"; }
+.f-site::before, .f-devices::before { content: "Site institucional · Computador e celular"; }
+.f-metricas::before { content: "Painel · Desempenho do perfil"; }
+.f-ai::before { content: "Assistente de IA · Resposta"; }
+.f-inbox::before, .f-mobile::before { content: "CRM CR8 Conecta"; }
+.serp::before { content: "Busca no Google · Resultado"; }
