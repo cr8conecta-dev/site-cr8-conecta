@@ -1558,3 +1558,17 @@ main .contact-list > div:last-child, main .facts > div:last-child { border-botto
 .hero h1 { font-size: clamp(2rem, 4.3vw, 3.5rem); max-width: 19ch; line-height: 1.06; }
 /* H2 dentro da seção "Para quem é" com o mesmo visual do antigo H3 */
 h2.h3-look { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; font-stretch: 100%; }
+
+
+/* ===== Botão flutuante do WhatsApp ===== */
+.wa-float {
+  position: fixed; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 60; width: 3.6rem; height: 3.6rem; border-radius: 50%;
+  display: grid; place-items: center; color: #fff; background: #25d366;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .28); text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.wa-float:hover { transform: scale(1.06); box-shadow: 0 8px 22px rgba(0, 0, 0, .34); color: #fff; }
+.wa-float:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+@media (max-width: 640px) { .wa-float { width: 3.3rem; height: 3.3rem; } }
+@media print { .wa-float { display: none; } }

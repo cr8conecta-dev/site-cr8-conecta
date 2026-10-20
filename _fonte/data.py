@@ -4,7 +4,7 @@
 SITE = "https://cr8conecta.com.br"
 NAME = "CR8 Conecta"
 WHATSAPP = "5541995257590"
-WA_TEXT = "Olá, vim do site e gostaria de pedir o diagnóstico gratuito."
+WA_TEXT = "Olá, vim do site. Gostaria de obter um diagnóstico gratuito para meu negócio."
 PHONE = "(41) 99525-7590"
 PHONE_E164 = "+5541995257590"
 EMAIL = "contato@cr8conecta.com.br"
