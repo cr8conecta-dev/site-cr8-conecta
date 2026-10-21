@@ -58,6 +58,12 @@ _fonte/gerar.py        gera tudo: python3 _fonte/gerar.py
 - Backups da home antiga: pasta e zip `Documentos\backup-cr8conecta-ao-vivo-2026-10-15`, branch `backup-site-antigo-2026-10-15`, tag `backup-antes-ux-2026-10-15`, backups diários da Hostinger.
 - Cuidado: o repositório privado `cr8-site` publicava o site antigo por FTP. Se ele rodar de novo, pode reenviar a home antiga por cima; desativar o workflow dele.
 
+## Buscadores (atualizado em 21/10/2026)
+
+- Google Search Console: propriedade `https://cr8conecta.com.br/` verificada por arquivo HTML (`google34f91344faf878f5.html` na raiz; NÃO apagar). Sitemap enviado e processado (10 páginas). Indexação pedida para a home e as páginas de serviço.
+- Bing Webmaster Tools: site cadastrado, sitemap com sucesso. IndexNow ligado: arquivo-chave `6c58b88af9a41c8b16223861420d7101.txt` na raiz (NÃO apagar) e passo no deploy que avisa o Bing a cada publicação.
+- Bing Places: listagem da CR8 importada do Google, verificada, publicação em andamento (7 a 12 dias). O site no Perfil do Google deve ser `https://cr8conecta.com.br/` (sem www, com https); o Bing copia do Google.
+
 ## Pendências conhecidas
 
 - Visual novo JÁ NO AR desde 19/10/2026, mas sem a aprovação do Carlos ainda: capa clara (nude/branco) em todas as páginas e resto do site em azul com gradiente e brilho suave (a pedido; foge da regra "sem brilhos, gradientes decorativos" e de "seções alternam escuras e claras"), fundo escuro mais fundo (#0a1c2e), texto corrido em Archivo (sem serifa), títulos mais leves, capas claras em Sobre e Contato, home sem o cartão escuro dos pilares. Ilustrações das páginas agora são painéis escuros estilo dashboard (bloco "PAINÉIS ESTILO DASHBOARD" no fim do CSS; apagar o bloco volta ao painel claro). Botão flutuante de WhatsApp em todas as páginas. O bloco "CAPA CLARA em todas as páginas" no fim de `assets/css/style.css` define a capa clara e o azul com brilho; apagar esse bloco volta ao azul liso.
