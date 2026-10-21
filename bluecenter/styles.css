@@ -466,3 +466,8 @@ footer h3{font-size:.82rem;letter-spacing:.02em;color:#8FB2EE;margin:0 0 14px;fo
 
 .gbadge .stars{display:inline-flex;gap:2px}
 .gbadge .stars .ico{width:17px;height:17px}
+
+/* mantém as cores da marca em qualquer tema do navegador */
+:root{color-scheme:only light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:only light}}
+:root[data-theme="dark"]{color-scheme:only light}
