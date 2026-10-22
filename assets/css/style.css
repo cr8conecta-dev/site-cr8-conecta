@@ -1732,3 +1732,10 @@ main > .section .grad, .cta-box .grad, .site-footer .grad { background-image: li
 .post-cta p, .post-cta a:not(.btn) { color: #dbe7f5; }
 .post-cta .btn-primary { background: #fff; color: #0d2743 !important; }
 .share { margin-top: 1.6rem; font-size: .95rem; color: #4e6277 !important; }
+
+
+/* ===== Capas ilustradas do blog ===== */
+.cover, .cover-lg { display: block; padding: 0; min-height: 0; aspect-ratio: 16 / 9; background: #dbe8f5; border-radius: 16px; color: inherit; }
+.cover svg { position: static; display: block; width: 100%; height: 100%; opacity: 1; right: auto; top: auto; }
+.post-card.feat .cover { min-height: 0; height: auto; aspect-ratio: 16 / 9; align-self: center; }
+.post-body .cover { margin-bottom: 2.2rem; border-radius: 20px; }

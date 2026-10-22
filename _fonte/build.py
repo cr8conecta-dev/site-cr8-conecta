@@ -808,18 +808,104 @@ def build_privacy():
     write_page("politica-de-privacidade", head(c, title, desc, graph) + header(c, "politica-de-privacidade") + body + footer(c) + tail(c))
 
 
-COVER_ICONS = {
-    "maps": '<path d="M32 6c-9.4 0-17 7.4-17 16.6C15 36 32 58 32 58s17-22 17-35.4C49 13.4 41.400 6 32 6z"/><circle cx="32" cy="23" r="6.500"/>',
-    "trafego": '<circle cx="32" cy="32" r="24"/><circle cx="32" cy="32" r="15"/><circle cx="32" cy="32" r="6"/><path d="M32 32 52 12M46 12h6v6"/>',
-    "crm": '<path d="M6 10h52L38 32v20l-12 6V32L6 10z"/>',
-}
+import math as _m
+
+_NAVY, _MID, _SLATE = "#0d2743", "#2f6fb5", "#8c9eac"
+
+
+def _star(cx, cy, r=7, fill=_NAVY):
+    pts = []
+    for i in range(10):
+        ang = -_m.pi / 2 + i * _m.pi / 5
+        rr = r if i % 2 == 0 else r * 0.45
+        pts.append("%.1f,%.1f" % (cx + rr * _m.cos(ang), cy + rr * _m.sin(ang)))
+    return '<polygon points="%s" fill="%s"/>' % (" ".join(pts), fill)
+
+
+def _pin(cx, cy, k=1.0, fill=_NAVY, dot="#fff"):
+    return (f'<g transform="translate({cx} {cy}) scale({k})">'
+            f'<ellipse cx="0" cy="52" rx="20" ry="6" fill="#0d2743" opacity=".18"/>'
+            f'<path d="M0 -34C-19 -34 -32 -20 -32 -3C-32 22 0 50 0 50C0 50 32 22 32 -3C32 -20 19 -34 0 -34Z" fill="{fill}"/>'
+            f'<circle cx="0" cy="-3" r="11" fill="{dot}"/></g>')
+
+
+_DEFS = ('<filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#0d2743" flood-opacity=".22"/></filter>')
+
+
+def scene_maps():
+    streets = "".join('<path d="M0 %d H640" />' % y for y in (62, 150, 238, 318)) + "".join('<path d="M%d 0 V360" />' % x for x in (96, 214, 330, 452, 566))
+    stars = "".join(_star(468 + i * 18, 276) for i in range(5))
+    return (f'<defs><linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6eff8"/><stop offset="1" stop-color="#bdd1e6"/></linearGradient>{_DEFS}</defs>'
+            f'<rect width="640" height="360" fill="url(#gm)"/>'
+            f'<path d="M0 300 C120 260 200 330 320 300 C440 270 520 330 640 290 V360 H0Z" fill="#a9c3df" opacity=".55"/>'
+            f'<g stroke="#fff" stroke-width="11" stroke-linecap="round" opacity=".9" fill="none">{streets}<path d="M20 340 L620 40"/></g>'
+            f'<rect x="232" y="82" width="86" height="54" rx="12" fill="#c7d8ea"/><rect x="470" y="170" width="80" height="50" rx="12" fill="#c7d8ea"/>'
+            f'<circle cx="330" cy="190" r="118" fill="{_MID}" opacity=".10"/><circle cx="330" cy="190" r="118" fill="none" stroke="{_MID}" stroke-width="2" stroke-dasharray="6 8" opacity=".55"/>'
+            f'{_pin(150, 108, .55, _SLATE)}{_pin(520, 112, .5, _SLATE)}{_pin(176, 262, .5, _SLATE)}{_pin(560, 214, .45, _SLATE)}'
+            f'{_pin(330, 186, 1.15)}'
+            f'<g filter="url(#sh)"><rect x="438" y="236" width="170" height="76" rx="16" fill="#fff"/></g>'
+            f'<circle cx="466" cy="262" r="0" /><rect x="456" y="250" width="70" height="8" rx="4" fill="{_NAVY}" opacity=".85"/>{stars}'
+            f'<rect x="456" y="288" width="120" height="7" rx="3.500" fill="{_SLATE}" opacity=".55"/>'
+            f'<g filter="url(#sh)"><rect x="34" y="34" width="176" height="52" rx="14" fill="#fff"/></g>'
+            f'<circle cx="62" cy="60" r="12" fill="{_MID}"/><path d="M56 60l4 4 8-8" stroke="#fff" stroke-width="2.600" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<rect x="84" y="50" width="96" height="8" rx="4" fill="{_NAVY}" opacity=".85"/><rect x="84" y="66" width="64" height="7" rx="3.500" fill="{_SLATE}" opacity=".6"/>')
+
+
+def scene_trafego():
+    rows = ""
+    # linhas de resultado
+    rows += (f'<rect x="124" y="140" width="392" height="64" rx="12" fill="#e4eefa"/>'
+             f'<rect x="140" y="152" width="54" height="16" rx="8" fill="{_NAVY}"/><text x="167" y="164" font-size="10" font-weight="700" fill="#fff" text-anchor="middle" font-family="Archivo, system-ui, sans-serif">Anúncio</text>'
+             f'<rect x="206" y="154" width="170" height="9" rx="4.500" fill="{_MID}"/><rect x="140" y="178" width="290" height="7" rx="3.500" fill="{_SLATE}" opacity=".7"/><rect x="140" y="190" width="220" height="7" rx="3.500" fill="{_SLATE}" opacity=".5"/>')
+    rows += (f'<rect x="124" y="214" width="392" height="64" rx="12" fill="#f4f7fb"/>'
+             f'<rect x="140" y="226" width="64" height="16" rx="8" fill="none" stroke="{_NAVY}" stroke-width="1.600"/><text x="172" y="238" font-size="10" font-weight="700" fill="{_NAVY}" text-anchor="middle" font-family="Archivo, system-ui, sans-serif">Orgânico</text>'
+             f'<rect x="216" y="228" width="150" height="9" rx="4.500" fill="{_NAVY}" opacity=".8"/><rect x="140" y="252" width="270" height="7" rx="3.500" fill="{_SLATE}" opacity=".7"/><rect x="140" y="264" width="200" height="7" rx="3.500" fill="{_SLATE}" opacity=".5"/>')
+    return (f'<defs><linearGradient id="gt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cddcec"/><stop offset="1" stop-color="#9db7d2"/></linearGradient>{_DEFS}</defs>'
+            f'<rect width="640" height="360" fill="url(#gt)"/>'
+            f'<circle cx="560" cy="60" r="90" fill="#fff" opacity=".18"/><circle cx="70" cy="320" r="110" fill="#fff" opacity=".14"/>'
+            f'<g filter="url(#sh)"><rect x="100" y="46" width="440" height="252" rx="20" fill="#fff"/></g>'
+            f'<circle cx="124" cy="68" r="4.500" fill="#c5d3e3"/><circle cx="140" cy="68" r="4.500" fill="#c5d3e3"/><circle cx="156" cy="68" r="4.500" fill="#c5d3e3"/>'
+            f'<rect x="124" y="90" width="392" height="32" rx="16" fill="#eef3f9"/><circle cx="144" cy="106" r="6" fill="none" stroke="{_SLATE}" stroke-width="2"/><path d="M148.500 110.500 L154 116" stroke="{_SLATE}" stroke-width="2" stroke-linecap="round"/>'
+            f'<rect x="164" y="102" width="150" height="8" rx="4" fill="{_SLATE}" opacity=".55"/>'
+            f'{rows}'
+            f'<g filter="url(#sh)"><rect x="410" y="268" width="196" height="76" rx="16" fill="#fff"/></g>'
+            f'<polyline points="428,328 468,312 500,318 540,296 586,280" fill="none" stroke="{_MID}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<circle cx="586" cy="280" r="6" fill="{_MID}"/><rect x="428" y="282" width="56" height="7" rx="3.500" fill="{_SLATE}" opacity=".6"/>'
+            f'<path d="M458 176 L458 204 L466 197 L472 210 L478 207 L472 194 L482 194Z" fill="{_NAVY}" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>')
+
+
+def scene_crm():
+    cols = [("Novo", 2), ("Conversa", 2), ("Proposta", 1), ("Fechado", 1)]
+    out = ""
+    x0, w, gap = 34, 134, 14
+    for i, (nome, n) in enumerate(cols):
+        x = x0 + i * (w + gap)
+        last = i == 3
+        out += f'<rect x="{x}" y="56" width="{w}" height="248" rx="18" fill="{"#dcecf7" if not last else "#cfe3f3"}"/>'
+        out += f'<text x="{x + 16}" y="84" font-size="13" font-weight="700" fill="{_NAVY}" font-family="Archivo, system-ui, sans-serif">{nome}</text>'
+        out += f'<circle cx="{x + w - 20}" cy="79" r="9" fill="{_NAVY}" opacity=".9"/><text x="{x + w - 20}" y="83" font-size="10" font-weight="700" fill="#fff" text-anchor="middle" font-family="Archivo, system-ui, sans-serif">{n}</text>'
+        for j in range(n):
+            y = 102 + j * 74
+            out += (f'<g filter="url(#sh)"><rect x="{x + 10}" y="{y}" width="{w - 20}" height="62" rx="12" fill="#fff"/></g>'
+                    f'<circle cx="{x + 28}" cy="{y + 20}" r="8" fill="{_SLATE}" opacity=".7"/><rect x="{x + 42}" y="{y + 14}" width="{w - 70}" height="8" rx="4" fill="{_NAVY}" opacity=".8"/>'
+                    f'<rect x="{x + 22}" y="{y + 38}" width="{w - 50}" height="7" rx="3.500" fill="{_SLATE}" opacity=".55"/>')
+    # card em movimento + seta
+    out += (f'<g transform="rotate(-4 376 208)" filter="url(#sh)"><rect x="318" y="178" width="116" height="62" rx="12" fill="#fff"/>'
+            f'<circle cx="336" cy="198" r="8" fill="{_MID}"/><rect x="350" y="192" width="64" height="8" rx="4" fill="{_NAVY}" opacity=".85"/><rect x="330" y="216" width="84" height="7" rx="3.500" fill="{_SLATE}" opacity=".55"/></g>')
+    out += f'<path d="M300 176 C316 160 346 156 372 166" fill="none" stroke="{_MID}" stroke-width="3.500" stroke-linecap="round" stroke-dasharray="2 8"/><path d="M364 158 L374 167 L361 172" fill="none" stroke="{_MID}" stroke-width="3.500" stroke-linecap="round" stroke-linejoin="round"/>'
+    # check no fechado
+    out += (f'<circle cx="{x0 + 3 * (w + gap) + 67}" cy="236" r="22" fill="{_MID}"/><path d="M{x0 + 3 * (w + gap) + 57} 236 l7 7 13 -14" fill="none" stroke="#fff" stroke-width="4.500" stroke-linecap="round" stroke-linejoin="round"/>')
+    return (f'<defs><linearGradient id="gc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf1f8"/><stop offset="1" stop-color="#c3d4e6"/></linearGradient>{_DEFS}</defs>'
+            f'<rect width="640" height="360" fill="url(#gc)"/>{out}')
+
+
+SCENES = {"maps": scene_maps, "trafego": scene_trafego, "crm": scene_crm}
 
 
 def cover_html(p, big=False):
-    icon = COVER_ICONS.get(p["cover"], "")
+    svg = SCENES[p["cover"]]()
     return (f'<span class="cover cv-{p["cover"]}{" cover-lg" if big else ""}" aria-hidden="true">'
-            f'<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round">{icon}</svg>'
-            f'<b>{esc(p["category"])}</b></span>')
+            f'<svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" focusable="false">{svg}</svg></span>')
 
 
 def post_minutes(p):
