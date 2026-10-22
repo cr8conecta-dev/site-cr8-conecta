@@ -11,6 +11,12 @@
 - [CRM de Vendas](https://cr8conecta.com.br/crm-de-vendas/): Implantamos o CRM com WhatsApp e IA que mostra a origem de cada lead, organiza o time de vendas e devolve dados ao Google Ads e ao Meta Ads.
 - [Automação e IA no Atendimento](https://cr8conecta.com.br/automacao-ia-atendimento/): Atendimento ágil no WhatsApp com automação e inteligência artificial: primeira resposta rápida, qualificação e encaminhamento ao time, sem perder a humanização.
 
+## Blog
+
+- [Como aparecer no Google Maps em Curitiba: o que realmente pesa](https://cr8conecta.com.br/blog/como-aparecer-no-google-maps-curitiba/): Os fatores que o Google usa para mostrar empresas no mapa e o que você pode fazer em cada um: perfil, categorias, avaliações, fotos e site.
+- [Tráfego pago ou SEO: por onde começar na sua empresa](https://cr8conecta.com.br/blog/trafego-pago-ou-seo-por-onde-comecar/): Qual a diferença entre anúncios e SEO, quando cada um faz mais sentido e o que preparar antes de investir em qualquer um dos dois.
+- [CRM para empresa de serviços: quando vale a pena e como começar](https://cr8conecta.com.br/blog/crm-para-empresa-de-servicos-quando-vale-a-pena/): Sinais de que sua empresa já precisa de um CRM, o que ele faz na prática e como começar sem complicar o comercial.
+
 ## Sobre a empresa
 
 - [Método PAR 360](https://cr8conecta.com.br/metodo-par-360/): Conheça o Método PAR 360 da CR8 Conecta: posicionamento, atração e retenção integrados em um sistema que gera vendas contínuas para empresas de serviços.

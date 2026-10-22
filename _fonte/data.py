@@ -451,3 +451,148 @@ HOME_FAQ = [
     ("Preciso ter equipe para aplicar o método?", "Não. O método foi pensado para empresas em que o dono ainda está no operacional. O CRM e a IA no atendimento permitem responder mais rápido e perder menos contatos com a estrutura que você já tem."),
     ("Vou precisar postar nas redes sociais todo dia?", "Não. O Instagram é configurado como vitrine profissional, e não como canal de algoritmo. Fazemos as postagens estratégicas iniciais para dar credibilidade, e o foco passa para os anúncios e para o Google, que trazem resultado sem depender de frequência de postagem."),
 ]
+
+
+# ---------------------------------------------------------------------------
+# Blog: um item por artigo. Corpo em HTML simples (h2, p, ul). Sem preços, sem números inventados.
+# ---------------------------------------------------------------------------
+POSTS = [
+    {
+        "slug": "como-aparecer-no-google-maps-curitiba",
+        "category": "Perfil no Google", "cover": "maps",
+        "meta_title": "Como aparecer no Google Maps em Curitiba",
+        "title": "Como aparecer no Google Maps em Curitiba: o que realmente pesa",
+        "desc": "Os fatores que o Google usa para mostrar empresas no mapa e o que você pode fazer em cada um: perfil, categorias, avaliações, fotos e site.",
+        "date": "2026-10-22",
+        "date_human": "22 de outubro de 2026",
+        "lead": "Quando alguém pesquisa \"mecânico perto de mim\" ou \"advogado em Curitiba\", o Google mostra um mapa com poucas empresas antes de qualquer site. Aparecer ali depende de poucos fatores, e boa parte deles está nas suas mãos.",
+        "related": ["google-meu-negocio", "criacao-de-sites"],
+        "body": """
+<h2>Os três fatores que o Google usa</h2>
+<p>O próprio Google explica que a ordem das empresas nos resultados locais depende de três coisas: <strong>relevância</strong> (o quanto o perfil combina com o que a pessoa buscou), <strong>distância</strong> (o quão perto a empresa está de quem busca) e <strong>destaque</strong> (o quanto a empresa é conhecida e bem avaliada).</p>
+<p>A distância você não controla. A relevância e o destaque, sim, e é onde vale concentrar o esforço.</p>
+
+<h2>Comece pelo perfil completo</h2>
+<p>Um perfil pela metade perde para um perfil completo. Confira:</p>
+<ul>
+<li><strong>Nome da empresa</strong> exatamente como ele é na vida real. Acrescentar palavras-chave ao nome vai contra as regras do Google e pode levar à suspensão do perfil.</li>
+<li><strong>Categoria principal</strong> a mais específica possível, e categorias secundárias para os outros serviços.</li>
+<li><strong>Serviços e descrição</strong> escritos com as palavras que o cliente usa, e não com termos internos.</li>
+<li><strong>Horário, telefone e site</strong> corretos e atualizados, inclusive em feriados.</li>
+</ul>
+
+<h2>Mantenha os dados iguais em todo lugar</h2>
+<p>Nome, endereço e telefone devem ser os mesmos no Perfil da Empresa, no site, no Instagram e em qualquer diretório. Dados diferentes confundem o Google e fazem a empresa parecer menos confiável. Até o endereço do site importa: use sempre a mesma versão, com ou sem www, e com https.</p>
+
+<h2>Fotos reais e atividade</h2>
+<p>Fotos do local, da equipe, dos serviços feitos e dos produtos ajudam o cliente a decidir e mostram que a empresa está viva. Prefira fotos próprias a imagens de banco. Postagens curtas com novidades, ofertas e avisos reforçam o sinal de atividade.</p>
+
+<h2>Avaliações: peça e responda</h2>
+<p>A quantidade, a nota e a frequência das avaliações pesam no destaque. Para ter mais avaliações:</p>
+<ul>
+<li>Peça logo depois do atendimento, quando o cliente ainda está satisfeito, enviando o link direto para avaliar.</li>
+<li>Responda todas, as boas e as ruins, de forma educada e objetiva.</li>
+<li>Não ofereça desconto ou brinde em troca de avaliação. As regras do Google não permitem, e avaliações compradas podem ser removidas.</li>
+</ul>
+
+<h2>O site também conta</h2>
+<p>O Google lê o site para entender o que a empresa faz e onde atua. Uma página clara para cada serviço, que cite a cidade e a região atendidas, ajuda o perfil a ser considerado relevante nas buscas locais. Perfil e site funcionam melhor juntos.</p>
+
+<h2>O que esperar</h2>
+<p>A posição no mapa muda aos poucos, conforme o perfil é completado e as avaliações chegam. Nenhum serviço pode garantir o primeiro lugar, porque o Google decide a ordem. O que dá para fazer é deixar o perfil completo, consistente e ativo, e acompanhar os resultados: ligações, pedidos de rota e cliques no WhatsApp.</p>
+""",
+    },
+    {
+        "slug": "trafego-pago-ou-seo-por-onde-comecar",
+        "category": "Tráfego e SEO", "cover": "trafego",
+        "meta_title": "Tráfego pago ou SEO: por onde começar?",
+        "title": "Tráfego pago ou SEO: por onde começar na sua empresa",
+        "desc": "Qual a diferença entre anúncios e SEO, quando cada um faz mais sentido e o que preparar antes de investir em qualquer um dos dois.",
+        "date": "2026-10-22",
+        "date_human": "22 de outubro de 2026",
+        "lead": "Tráfego pago e SEO levam clientes ao seu site e ao seu WhatsApp, mas funcionam de jeitos muito diferentes. Escolher por onde começar depende de quão rápido você precisa de contatos e do que já está pronto na empresa.",
+        "related": ["trafego-pago", "criacao-de-sites"],
+        "body": """
+<h2>O que é cada um</h2>
+<p><strong>Tráfego pago</strong> é a compra de espaço em canais como Google e Instagram para mostrar sua empresa a pessoas com o perfil que você escolhe. Enquanto o anúncio roda, os contatos chegam. Quando você para de investir, eles param.</p>
+<p><strong>SEO</strong> é o trabalho de fazer o site e o Perfil da Empresa no Google aparecerem de forma orgânica, sem pagar por clique. Ele leva mais tempo para dar resultado, mas o efeito se acumula e continua depois do trabalho feito.</p>
+
+<h2>As diferenças que importam</h2>
+<ul>
+<li><strong>Velocidade:</strong> anúncios podem trazer contatos em poucos dias. O SEO costuma levar semanas ou meses para mostrar resultado.</li>
+<li><strong>Controle:</strong> nos anúncios você escolhe público, região, orçamento e mensagem. No SEO, o Google decide a posição.</li>
+<li><strong>Custo ao longo do tempo:</strong> anúncios exigem investimento contínuo. O SEO exige trabalho contínuo, mas cada conteúdo pode continuar trazendo visitas.</li>
+<li><strong>Tipo de contato:</strong> os anúncios aparecem para quem talvez ainda não procurava. Na busca do Google, o anúncio e o resultado orgânico alcançam quem já está procurando o serviço.</li>
+</ul>
+
+<h2>Quando começar por anúncios</h2>
+<p>Faz mais sentido começar pelos anúncios quando você precisa de contatos logo, tem uma oferta clara e já consegue atender rápido no WhatsApp. Com a campanha rodando, você aprende o que as pessoas respondem e usa isso para ajustar o restante.</p>
+
+<h2>Quando começar por SEO</h2>
+<p>Comece pelo SEO e pelo Perfil da Empresa no Google quando o orçamento é curto, o serviço é buscado na sua região e a empresa pode esperar. É uma base que continua valendo mesmo se um dia os anúncios forem pausados.</p>
+
+<h2>O melhor caminho costuma ser juntar os dois</h2>
+<p>Os anúncios trazem resposta rápida e dados. O SEO constrói uma base que reduz a dependência do investimento. O mesmo site bem feito serve aos dois: ele recebe o tráfego pago e é lido pelo Google.</p>
+
+<h2>Antes de investir em qualquer um</h2>
+<ul>
+<li><strong>Uma página clara</strong> para cada serviço, com botão de contato visível.</li>
+<li><strong>Atendimento rápido</strong> no WhatsApp. Contato que espera muito esfria.</li>
+<li><strong>Medição</strong> configurada, para saber de onde cada contato veio.</li>
+<li><strong>Uma meta simples,</strong> por exemplo quantos contatos por mês você quer, para saber se está funcionando.</li>
+</ul>
+<p>Sem essas bases, tanto o anúncio quanto o SEO desperdiçam parte do esforço. Com elas, qualquer um dos dois rende mais.</p>
+""",
+    },
+    {
+        "slug": "crm-para-empresa-de-servicos-quando-vale-a-pena",
+        "category": "CRM e vendas", "cover": "crm",
+        "meta_title": "CRM para empresa de serviços: vale a pena?",
+        "title": "CRM para empresa de serviços: quando vale a pena e como começar",
+        "desc": "Sinais de que sua empresa já precisa de um CRM, o que ele faz na prática e como começar sem complicar o comercial.",
+        "date": "2026-10-22",
+        "date_human": "22 de outubro de 2026",
+        "lead": "Muita empresa de serviços atende bem, mas perde vendas depois do primeiro contato: o cliente pediu orçamento, ninguém retornou na hora certa e a conversa esfriou. Um CRM existe para evitar isso, e dá para começar de forma simples.",
+        "related": ["crm-de-vendas", "automacao-ia-atendimento"],
+        "body": """
+<h2>O que é um CRM, em português claro</h2>
+<p>CRM é o lugar onde ficam registrados todos os contatos da empresa, em que etapa cada um está e o que precisa acontecer em seguida. Em vez de conversas soltas no WhatsApp e anotações em papel, o time enxerga tudo em uma tela só.</p>
+
+<h2>Sinais de que sua empresa já precisa</h2>
+<ul>
+<li>Contatos chegam por WhatsApp, Instagram e formulário, e ninguém sabe ao certo quantos são.</li>
+<li>Orçamentos enviados ficam sem resposta e ninguém lembra de retomar.</li>
+<li>Você não sabe qual canal traz os melhores clientes.</li>
+<li>Quando alguém do time sai, leva consigo o histórico das conversas.</li>
+<li>O dono precisa perguntar a cada pessoa como estão as vendas.</li>
+</ul>
+
+<h2>O que um CRM faz na prática</h2>
+<ul>
+<li><strong>Organiza o funil:</strong> cada contato fica em uma etapa, como novo contato, em conversa, proposta enviada e fechado.</li>
+<li><strong>Lembra do follow-up:</strong> avisa quando é hora de retomar uma conversa.</li>
+<li><strong>Mostra a origem:</strong> indica de onde veio cada contato, para você investir no que funciona.</li>
+<li><strong>Junta os canais:</strong> as conversas de WhatsApp e redes ficam no mesmo lugar, com histórico.</li>
+</ul>
+
+<h2>Como começar sem complicar</h2>
+<ol>
+<li><strong>Defina as etapas da sua venda,</strong> em quatro ou cinco no máximo. Etapas demais viram burocracia.</li>
+<li><strong>Registre todo contato novo,</strong> com nome, serviço pedido e origem.</li>
+<li><strong>Combine um prazo de retorno:</strong> por exemplo, responder o orçamento em até um dia e retomar a conversa se não houver resposta.</li>
+<li><strong>Olhe os números toda semana:</strong> quantos contatos entraram, quantos viraram proposta e quantos fecharam.</li>
+</ol>
+
+<h2>Erros comuns</h2>
+<ul>
+<li><strong>Comprar a ferramenta antes de definir o processo.</strong> O CRM mostra o que você já faz. Se o processo é confuso, ele só vai mostrar confusão.</li>
+<li><strong>Não usar de verdade.</strong> Se o time não registra os contatos, o CRM fica vazio e não serve para nada.</li>
+<li><strong>Complicar demais no começo.</strong> Comece simples e acrescente automações depois.</li>
+</ul>
+
+<h2>E a inteligência artificial no atendimento?</h2>
+<p>Uma resposta automática no WhatsApp pode dar a primeira resposta, tirar dúvidas simples e passar a conversa para a equipe na hora certa. Ela ajuda mais quando está ligada ao CRM, porque cada conversa já entra registrada e com a etapa certa. Os canais disponíveis dependem da configuração da conta, e o ideal é definir no diagnóstico o que faz sentido para a sua operação.</p>
+""",
+    },
+]
+POSTS_BY_SLUG = {p["slug"]: p for p in POSTS}

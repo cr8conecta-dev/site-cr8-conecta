@@ -54,11 +54,11 @@ def _versao(p):
 class Ctx:
     def __init__(self, slug):
         self.slug = slug
-        self.depth = 0 if slug == "" else 1
+        self.depth = 0 if slug == "" else slug.count("/") + 1
 
     @property
     def root(self):
-        return "./" if self.depth == 0 else "../"
+        return "./" if self.depth == 0 else "../" * self.depth
 
     def asset(self, p):
         return self.root + "assets/" + p + _versao(p)
@@ -96,6 +96,7 @@ def header(c, current=None):
 <div class="has-menu"><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-solucoes">Soluções {chevron}</button>
 <div class="menu" id="menu-solucoes">{items}</div></div>
 <a href="{c.link(PAR['slug'])}"{cur(PAR['slug'])}>Método PAR 360</a>
+<a href="{c.link('blog')}"{cur('blog')}>Blog</a>
 <a href="{c.link('sobre')}"{cur('sobre')}>Sobre</a>
 <a href="{c.link('contato')}"{cur('contato')}>Contato</a>
 <a class="btn btn-primary" href="{WA_URL}" data-cta="whatsapp" target="_blank" rel="noopener">Diagnóstico gratuito</a>
@@ -116,6 +117,7 @@ def footer(c):
 <div><h2>Soluções</h2><ul>{sol}</ul></div>
 <div><h2>Empresa</h2><ul>
 <li><a href="{c.link(PAR['slug'])}">Método PAR 360</a></li>
+<li><a href="{c.link('blog')}">Blog</a></li>
 <li><a href="{c.link('sobre')}">Sobre a CR8 Conecta</a></li>
 <li><a href="{c.link('contato')}">Contato</a></li>
 </ul></div>
@@ -806,6 +808,126 @@ def build_privacy():
     write_page("politica-de-privacidade", head(c, title, desc, graph) + header(c, "politica-de-privacidade") + body + footer(c) + tail(c))
 
 
+COVER_ICONS = {
+    "maps": '<path d="M32 6c-9.4 0-17 7.4-17 16.6C15 36 32 58 32 58s17-22 17-35.4C49 13.4 41.400 6 32 6z"/><circle cx="32" cy="23" r="6.500"/>',
+    "trafego": '<circle cx="32" cy="32" r="24"/><circle cx="32" cy="32" r="15"/><circle cx="32" cy="32" r="6"/><path d="M32 32 52 12M46 12h6v6"/>',
+    "crm": '<path d="M6 10h52L38 32v20l-12 6V32L6 10z"/>',
+}
+
+
+def cover_html(p, big=False):
+    icon = COVER_ICONS.get(p["cover"], "")
+    return (f'<span class="cover cv-{p["cover"]}{" cover-lg" if big else ""}" aria-hidden="true">'
+            f'<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round">{icon}</svg>'
+            f'<b>{esc(p["category"])}</b></span>')
+
+
+def post_minutes(p):
+    palavras = len(re.sub(r"<[^>]+>", " ", p["body"]).split())
+    return max(1, round(palavras / 200))
+
+
+def slugify(t):
+    import unicodedata
+    t = unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
+
+
+def post_card(c, p, feature=False):
+    cls = "post-card feat" if feature else "post-card"
+    return (f"""<a class="{cls}" href="{c.link('blog/' + p['slug'])}">{cover_html(p, feature)}"""
+            f"""<span class="post-txt"><span class="post-meta"><span class="chip">{esc(p['category'])}</span>"""
+            f"""<time datetime="{p['date']}">{p['date_human']}</time> · {post_minutes(p)} min de leitura</span>"""
+            f"""<strong class="post-title">{esc(p['title'])}</strong><span class="post-desc">{esc(p['desc'])}</span>"""
+            f"""<span class="post-more">Ler artigo <i aria-hidden="true">&rarr;</i></span></span></a>""")
+
+
+def build_blog():
+    c = Ctx("blog")
+    url = c.url()
+    title = "Blog de marketing e vendas | CR8 Conecta"
+    desc = "Artigos práticos da CR8 Conecta sobre Perfil da Empresa no Google, tráfego pago, SEO, CRM e atendimento para empresas de Curitiba e região."
+    graph = [
+        org_node(), website_node(),
+        webpage_node(url, title, desc, page_type="CollectionPage", extra={"breadcrumb": {"@id": url + "#breadcrumb"}}),
+        breadcrumb_node(url, [("Início", SITE + "/"), ("Blog", url)]),
+    ]
+    first, rest = POSTS[0], POSTS[1:]
+    grid = '<div class="post-grid">%s</div>' % "".join(post_card(c, p) for p in rest) if rest else ""
+    body = f"""<main id="conteudo">
+<section class="page-hero hero-light"><div class="wrap">
+{crumbs(c, [("Início", ""), ("Blog", None)])}
+<h1>Blog da CR8 Conecta</h1>
+<p class="lead">Conteúdo prático para empresas de serviços que querem aparecer mais, atrair os clientes certos e vender com mais organização.</p>
+</div></section>
+<section class="blog-zone"><div class="wrap">
+<h2 class="blog-kicker">Artigo mais recente</h2>
+{post_card(c, first, True)}
+{('<h2 class="blog-kicker">Mais artigos</h2>' + grid) if grid else ''}
+</div></section>
+{cta_band(c, "Quer aplicar isso na sua empresa?", "O diagnóstico gratuito mostra por onde começar na sua empresa. Sem compromisso, com retorno em até 24 horas.")}
+</main>"""
+    write_page("blog", head(c, title, desc, graph) + header(c, "blog") + body + footer(c) + tail(c))
+
+
+def build_post(p):
+    slug = "blog/" + p["slug"]
+    c = Ctx(slug)
+    url = c.url()
+    title = p.get("meta_title", p["title"]) + " | CR8 Conecta"
+    desc = p["desc"]
+    graph = [
+        org_node(), website_node(),
+        webpage_node(url, title, desc, page_type="WebPage", extra={"breadcrumb": {"@id": url + "#breadcrumb"}}),
+        breadcrumb_node(url, [("Início", SITE + "/"), ("Blog", SITE + "/blog/"), (p["title"], url)]),
+        {
+            "@type": "BlogPosting", "@id": url + "#post", "headline": p["title"], "description": desc,
+            "datePublished": p["date"], "dateModified": p["date"], "inLanguage": "pt-BR",
+            "mainEntityOfPage": {"@id": url + "#webpage"},
+            "author": {"@id": SITE + "/#organization"}, "publisher": {"@id": SITE + "/#organization"},
+            "image": SITE + OG_IMAGE,
+        },
+    ]
+    # índice (h2 com âncora)
+    toc_items = []
+
+    def _id(m):
+        t = m.group(1)
+        i = slugify(plain(t))
+        toc_items.append((i, plain(t)))
+        return '<h2 id="%s">%s</h2>' % (i, t)
+
+    corpo = re.sub(r"<h2>(.*?)</h2>", _id, p["body"])
+    toc = "".join('<li><a href="#%s">%s</a></li>' % (i, esc(t)) for i, t in toc_items)
+    rel_serv = " · ".join('<a href="%s">%s</a>' % (c.link(sl), esc(SOL[sl]["nav"])) for sl in p["related"])
+    outros = [o for o in POSTS if o["slug"] != p["slug"]][:2]
+    mais = ""
+    if outros:
+        mais = '<section class="blog-zone blog-more"><div class="wrap"><h2 class="blog-kicker">Continue lendo</h2><div class="post-grid">%s</div></div></section>' % "".join(post_card(c, o) for o in outros)
+    share_txt = quote(p["title"] + " " + url)
+    body = f"""<main id="conteudo">
+<section class="page-hero hero-light"><div class="wrap">
+{crumbs(c, [("Início", ""), ("Blog", "blog"), (p['title'], None)])}
+<span class="chip chip-lg">{esc(p['category'])}</span>
+<h1>{esc(p['title'])}</h1>
+<p class="lead">{esc(p['lead'])}</p>
+<p class="byline"><img src="{c.asset('logos/cr8-mark.png')}" alt="" width="{MARK_W}" height="{MARK_H}"><span><strong>CR8 Conecta</strong><small>Publicado em <time datetime="{p['date']}">{p['date_human']}</time> · {post_minutes(p)} min de leitura</small></span></p>
+</div></section>
+<section class="blog-zone"><div class="wrap post-layout">
+<aside class="toc" aria-label="Neste artigo"><p>Neste artigo</p><ol>{toc}</ol></aside>
+<article class="post-body">
+{cover_html(p, True)}
+{corpo}
+<div class="post-cta"><h2>Quer ajuda com isso?</h2><p>A CR8 Conecta trabalha exatamente nisso. Veja como fazemos: {rel_serv}.</p>
+<p><a class="btn btn-primary" href="{WA_URL}" data-cta="whatsapp" target="_blank" rel="noopener">Pedir diagnóstico gratuito</a></p></div>
+<p class="share">Compartilhar: <a href="https://wa.me/?text={share_txt}" target="_blank" rel="noopener">WhatsApp</a> · <a href="https://www.linkedin.com/sharing/share-offsite/?url={quote(url)}" target="_blank" rel="noopener">LinkedIn</a></p>
+</article>
+</div></section>
+{mais}
+</main>"""
+    write_page(slug, head(c, title, desc, graph) + header(c, "blog") + body + footer(c) + tail(c))
+
+
 def build_404():
     c = Ctx("")
     c.depth = 0
@@ -828,11 +950,11 @@ def build_404():
 
 
 def build_files():
-    pages = [""] + [s["slug"] for s in SOLUTIONS] + [PAR["slug"], "sobre", "contato", "politica-de-privacidade"]
+    pages = [""] + [s["slug"] for s in SOLUTIONS] + [PAR["slug"], "blog"] + ["blog/" + p["slug"] for p in POSTS] + ["sobre", "contato", "politica-de-privacidade"]
     urls = []
     for slug in pages:
         loc = SITE + "/" + (slug + "/" if slug else "")
-        pr = "1.0" if slug == "" else ("0.9" if slug in [s["slug"] for s in SOLUTIONS] or slug == PAR["slug"] else ("0.3" if slug == "politica-de-privacidade" else "0.6"))
+        pr = "1.0" if slug == "" else ("0.9" if slug in [s["slug"] for s in SOLUTIONS] or slug == PAR["slug"] else ("0.3" if slug == "politica-de-privacidade" else ("0.7" if slug == "blog" else "0.6")))
         urls.append("<url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>" % (loc, MODIFIED, pr))
     sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s\n</urlset>\n' % "\n".join(urls)
     with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
@@ -857,6 +979,10 @@ def build_files():
     for s in SOLUTIONS:
         lines.append("- [%s](%s/%s/): %s" % (s["nav"], SITE, s["slug"], s["desc"]))
     lines += [
+        "",
+        "## Blog",
+        "",
+    ] + ["- [%s](%s/blog/%s/): %s" % (p["title"], SITE, p["slug"], p["desc"]) for p in POSTS] + [
         "",
         "## Sobre a empresa",
         "",
@@ -884,6 +1010,9 @@ if __name__ == "__main__":
     build_about()
     build_contact()
     build_privacy()
+    build_blog()
+    for _p in POSTS:
+        build_post(_p)
     build_404()
     build_files()
     print("ok", OUT, "preview" if PREVIEW else "prod")

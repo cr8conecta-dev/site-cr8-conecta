@@ -73,5 +73,5 @@ _fonte/gerar.py        gera tudo: python3 _fonte/gerar.py
 - Figma da home (conta da Amanda, ainda sem acesso da CR8): https://www.figma.com/design/5lhZ3wX844SzClvDX9jf0G. O Figma não atualiza o site sozinho.
 
 - Página de política de privacidade (necessária para anúncios e formulário).
-- Blog em `/blog/` (estrutura preparada, ainda sem conteúdo).
+- Blog em `/blog/` NO AR com 3 artigos (lista `POSTS` em `_fonte/data.py`; para criar artigo, acrescentar um item lá). Regras: sem preços, sem números inventados, sem travessão, sem citar GHL. Próximos temas sugeridos: redes sociais para empresas de serviço, IA no atendimento por WhatsApp, o que é o Método PAR 360.
 - Depois de publicar: enviar `https://cr8conecta.com.br/sitemap.xml` no Google Search Console e criar os acionadores no GTM para os eventos `cta_click`, `generate_lead` e `video_play`.
