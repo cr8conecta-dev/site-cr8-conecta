@@ -9,6 +9,28 @@
     dl.push(payload);
   }
 
+  // Aviso de cookies: o Google Tag Manager só carrega depois do "Aceitar"
+  (function () {
+    var bar = document.getElementById("cookie-bar");
+    if (!bar) return;
+    var KEY = "cr8-cookies";
+    function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+    function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+    function show() { bar.hidden = false; }
+    if (!get()) show();
+    bar.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-cookie]");
+      if (!b) return;
+      var v = b.getAttribute("data-cookie");
+      set(v);
+      bar.hidden = true;
+      if (v === "aceito" && window.cr8LoadGTM) window.cr8LoadGTM();
+    });
+    document.addEventListener("click", function (e) {
+      if (e.target.closest("[data-cookie-open]")) show();
+    });
+  })();
+
   // Menu mobile
   var header = document.querySelector(".site-header");
   var navButton = document.querySelector(".nav-button");

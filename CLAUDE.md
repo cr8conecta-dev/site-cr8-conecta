@@ -44,6 +44,7 @@ _fonte/gerar.py        gera tudo: python3 _fonte/gerar.py
 - Não inventar números, depoimentos ou clientes. Só dados com fonte verificável; se não tiver fonte, não usar.
 - NUNCA usar laranja nem violeta/roxo no site (pedido do Carlos). Destaques e brilhos só em tons de azul.
 - Títulos (h1/h2): a parte final sai em gradiente azul (classe `.grad`, aplicada sozinha por `destaque()` em `_fonte/build.py`; pedido do Carlos). Botões principais da capa também em gradiente azul.
+- Cookies (LGPD): o Google Tag Manager só carrega depois do "Aceitar" no aviso de cookies (`cr8LoadGTM` no head, escolha em localStorage `cr8-cookies`; link "Cookies" no rodapé reabre o aviso). Não recolocar o GTM direto no head nem o noscript do GTM.
 - Paleta oficial: marinho #0d2743, azul acinzentado #8c9eac, nude #dad5cf, branco #ffffff. Seções alternam escuras e claras.
 - Visual sóbrio: o Carlos não quer cara de site feito por IA. Evitar brilhos, formas flutuando, efeitos de aparecer ao rolar em todo bloco, cartões de vidro com sombra, gradientes decorativos. Preferir fotos reais e listas limpas.
 - Regras de design (espaçamento, tipografia, contraste, botões, metas de altura das páginas, checklist): ver `GUIA-VISUAL.md`. Prints de referência ficam em `referencias/`, que não vai para o GitHub nem para o site.

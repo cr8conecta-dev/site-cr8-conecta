@@ -128,7 +128,7 @@ def footer(c):
 <li>Curitiba, PR. Atendimento em Curitiba e região metropolitana, e também em outros estados.</li>
 </ul></div>
 </div>
-<div class="footer-bottom"><span>© 2026 CR8 Conecta. Todos os direitos reservados.</span><span><a href="{c.link('politica-de-privacidade')}">Política de privacidade</a></span><span>Atualizado em {MODIFIED_HUMAN}</span></div>
+<div class="footer-bottom"><span>© 2026 CR8 Conecta. Todos os direitos reservados.</span><span><a href="{c.link('politica-de-privacidade')}">Política de privacidade</a> · <button type="button" class="linklike" data-cookie-open>Cookies</button></span><span>Atualizado em {MODIFIED_HUMAN}</span></div>
 </div>
 </footer>
 <a class="wa-float" href="{WA_URL}" data-cta="whatsapp" target="_blank" rel="noopener" aria-label="Falar com a CR8 Conecta pelo WhatsApp"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.04 3C9.4 3 4 8.33 4 14.9c0 2.1.56 4.15 1.62 5.95L4 27l6.3-1.6a12.1 12.1 0 0 0 5.74 1.46C22.68 26.86 28 21.5 28 14.9 28 8.33 22.68 3 16.04 3zm0 21.8c-1.8 0-3.55-.48-5.08-1.38l-.36-.21-3.74.95 1-3.6-.24-.37a9.7 9.7 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.92-9.8 5.4 0 9.8 4.4 9.8 9.8s-4.5 9.81-9.8 9.81zm5.4-7.3c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.47-.89-.78-1.48-1.75-1.66-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.48-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.1 4.5.7.3 1.27.5 1.7.62.72.23 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg></a>"""
@@ -295,10 +295,12 @@ def head(c, title, desc, graph, noindex=False):
     gtm_body = ""
     if not PREVIEW:
         gtm_head = (
-            "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});"
+            "<script>window.dataLayer=window.dataLayer||[];window.cr8LoadGTM=function(){if(window.cr8GTM)return;window.cr8GTM=1;"
+            "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});"
             "var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;"
             "j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})"
-            "(window,document,'script','dataLayer','%s');</script>" % GTM_ID
+            "(window,document,'script','dataLayer','%s');};"
+            "try{if(localStorage.getItem('cr8-cookies')==='aceito')window.cr8LoadGTM();}catch(e){}</script>" % GTM_ID
         )
     robots = "noindex,follow" if noindex else "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
     ld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":"))
@@ -334,13 +336,16 @@ def head(c, title, desc, graph, noindex=False):
 {gtm_head}
 </head>
 <body>
-{('<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=%s" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>' % GTM_ID) if not PREVIEW else ''}
 <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 """
 
 
 def tail(c):
     return f"""
+<div class="cookie-bar" id="cookie-bar" role="dialog" aria-label="Aviso de cookies" hidden>
+<p>Usamos cookies de medição (Google Tag Manager) para entender como o site é usado e melhorar nossa divulgação. Você escolhe se aceita ou recusa. <a href="{c.link('politica-de-privacidade')}">Política de privacidade</a></p>
+<div class="cookie-actions"><button type="button" class="cookie-btn" data-cookie="recusado">Recusar</button><button type="button" class="cookie-btn cookie-yes" data-cookie="aceito">Aceitar</button></div>
+</div>
 <script src="{c.asset('js/site.js')}" defer></script>
 </body>
 </html>
@@ -774,7 +779,7 @@ def build_privacy():
 <ul>
 <li><strong>Dados que você nos envia no formulário de contato:</strong> nome, empresa, segmento, cidade e região de atuação e o que você quer melhorar primeiro. O formulário não envia nada para o nosso servidor: ele monta uma mensagem e abre o seu WhatsApp para você conferir e enviar. Este site não guarda os dados do formulário.</li>
 <li><strong>Dados que você nos envia por WhatsApp, telefone ou e-mail:</strong> o que você escrever e o seu número ou e-mail. Esses dados ficam no WhatsApp e no e-mail da CR8 Conecta.</li>
-<li><strong>Dados de navegação:</strong> o site usa o Google Tag Manager para medir o uso das páginas e registrar ações como cliques nos botões de contato, envio do formulário e reprodução de vídeos. Conforme as ferramentas configuradas nele, isso pode incluir identificadores de navegador (cookies), tipo de aparelho, páginas visitadas e origem da visita.</li>
+<li><strong>Dados de navegação:</strong> o site usa o Google Tag Manager para medir o uso das páginas e registrar ações como cliques nos botões de contato, envio do formulário e reprodução de vídeos. O Google Tag Manager só é carregado se você aceitar os cookies de medição no aviso do site. Conforme as ferramentas configuradas nele, isso pode incluir identificadores de navegador (cookies), tipo de aparelho, páginas visitadas e origem da visita.</li>
 </ul>
 <h2>Para que usamos os dados</h2>
 <ul>
@@ -794,7 +799,7 @@ def build_privacy():
 </ul>
 <p>Alguns desses fornecedores podem tratar dados fora do Brasil, seguindo as regras de transferência internacional da LGPD.</p>
 <h2>Cookies</h2>
-<p>Cookies são pequenos arquivos que o navegador guarda para lembrar informações sobre a sua visita. Os cookies deste site vêm das ferramentas de medição carregadas pelo Google Tag Manager. Você pode apagar ou bloquear cookies nas configurações do seu navegador. Algumas medições deixam de funcionar se você bloquear, mas o site continua abrindo normalmente.</p>
+<p>Cookies são pequenos arquivos que o navegador guarda para lembrar informações sobre a sua visita. Na primeira visita, mostramos um aviso para você aceitar ou recusar os cookies de medição, que vêm das ferramentas carregadas pelo Google Tag Manager. Se você recusar, essas ferramentas não são carregadas. Você pode mudar a escolha a qualquer momento no link "Cookies" no rodapé de qualquer página, e também apagar ou bloquear cookies nas configurações do navegador. O site abre normalmente em qualquer caso.</p>
 <h2>Por quanto tempo guardamos</h2>
 <p>Guardamos os dados pelo tempo necessário para atender ao seu contato e para cumprir obrigações legais. Depois disso, eles são apagados ou anonimizados.</p>
 <h2>Seus direitos</h2>
